@@ -243,28 +243,25 @@ def get_laplacian_matrix(tgt, msk):
 
 
 def wrap_dataset_cuda(dataset, use_cuda):
-  """ Wrap default numpy or list data into PyTorch variables.
-  """
+    """ Wrap default numpy or list data into PyTorch variables. """
+    batch_dataset = {'tmr': dataset['tmr']}
+    
+    for k in ['tgt', 'msk']:
+        if k in dataset.keys():
+            batch_dataset[k] = Variable(torch.FloatTensor(np.array(dataset[k])))
 
-  batch_dataset = {'tmr':dataset['tmr']}
-  for k in ['tgt', 'msk']:
-    if k in dataset.keys():
-      batch_dataset[k] = Variable(torch.FloatTensor(dataset[k]))
+    for k in dataset.keys():
+        if k.endswith('_idx'):
+            batch_dataset[k] = Variable(torch.LongTensor(np.array(dataset[k])))
+        elif k.endswith('_bin'):
+            batch_dataset[k] = Variable(torch.FloatTensor(np.array(dataset[k])))
 
-  for k in dataset.keys():
-    if k.endswith('_idx'):
-      batch_dataset[k] = Variable(torch.LongTensor(dataset[k]))
-    elif k.endswith('_bin'):
-      batch_dataset[k] = Variable(torch.FloatTensor(dataset[k]))
+    if use_cuda:
+        for k in batch_dataset.keys():
+            if k != 'tmr':  
+                batch_dataset[k] = batch_dataset[k].cuda()
 
-  if use_cuda:
-    for k in batch_dataset.keys():
-      if k == 'tmr':
-        continue
-      else:
-        batch_dataset[k] = batch_dataset[k].cuda()
-
-  return batch_dataset
+    return batch_dataset
 
 
 def get_minibatch(dataset, rng, index, batch_size, batch_type="train", use_cuda=True):
