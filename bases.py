@@ -1,7 +1,7 @@
 # bases.py
 
 import numpy as np
-
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -205,7 +205,7 @@ class ExpEncoder(nn.Module):
       self, omc_size, hidden_dim, dropout_rate=0.5, embedding_dim=512,
       use_attention=True, attention_size=400, attention_head=8, init_gene_emb=True,
       use_cntx_attn=True, ptw_ids=None, use_hid_lyr=False, use_relu=False,
-      repository='gdsc'):
+      repository='gdsc', input_dir="data/input"):
 
     """
     Parameters
@@ -229,9 +229,9 @@ class ExpEncoder(nn.Module):
     if init_gene_emb:
       if self.repository == 'gdsc':
         #GDSC dataset
-        gene_emb_pretrain = np.genfromtxt('data/input/exp_emb_gdsc.csv', delimiter=',')
+        gene_emb_pretrain = np.genfromtxt(os.path.join(input_dir, 'exp_emb_gdsc.csv'), delimiter=',')
       else:
-        gene_emb_pretrain = np.genfromtxt('data/input/exp_emb_ccle.csv', delimiter=',')
+        gene_emb_pretrain = np.genfromtxt(os.path.join(input_dir, 'exp_emb_ccle.csv'), delimiter=',')
 
       self.layer_emb = nn.Embedding.from_pretrained(
           torch.FloatTensor(gene_emb_pretrain), freeze=True, padding_idx=0)

@@ -69,6 +69,8 @@ class CF(Base):
         self.use_relu = args.use_relu
 
         self.repository = args.repository
+        
+        self.input_dir = args.input_dir
 
 
     def build(self, ptw_ids):
@@ -83,7 +85,7 @@ class CF(Base):
             embedding_dim=self.embedding_dim, use_attention=self.use_attention,
             attention_size=self.attention_size, attention_head=self.attention_head,
             init_gene_emb=self.init_gene_emb, use_cntx_attn=self.use_cntx_attn, ptw_ids=self.ptw_ids,
-            use_hid_lyr=self.use_hid_lyr, use_relu=self.use_relu, repository=self.repository
+            use_hid_lyr=self.use_hid_lyr, use_relu=self.use_relu, repository=self.repository, input_dir=self.input_dir
         )
 
         self.decoder = DrugDecoder(
