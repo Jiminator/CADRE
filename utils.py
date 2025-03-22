@@ -116,7 +116,7 @@ def load_dataset(input_dir="data/input", repository="gdsc", drug_id=-1, shuffle_
   num_sample = len(tmr)
 
   rng = []
-  with open('data/input/rng.txt', 'r') as f:
+  with open(os.path.join(input_dir, 'rng.txt'), 'r') as f:
     for line in f:
       v = int(line.strip())
       if v < num_sample:
