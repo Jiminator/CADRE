@@ -1,6 +1,7 @@
 # collaborative filtering (variants) algorithm
 import numpy as np
 import random
+import os
 
 import torch
 import torch.nn as nn
@@ -10,7 +11,7 @@ from torch.autograd import Variable
 from utils import get_minibatch, evaluate
 from bases import Base, DrugDecoder, ExpEncoder, CLR, OneCycle
 
-__author__ = "Yifeng Tao"
+__author__ = "Jimmy Shong"
 
 
 class CF(Base):
@@ -43,12 +44,15 @@ class CF(Base):
 
         self.train_size = args.train_size
         self.test_size = args.test_size
+        
+        self.seed = 2019
+        self._rng = random.Random(self.seed)
 
         self.rng_train = [idx for idx in range(self.train_size)]
-        random.shuffle(self.rng_train)
+        self._rng.shuffle(self.rng_train)
 
         self.rng_test = [idx for idx in range(self.test_size)]
-        random.shuffle(self.rng_test)
+        self._rng.shuffle(self.rng_test)
 
         self.omic = args.omic
 
@@ -162,10 +166,13 @@ class CF(Base):
         losses, losses_ent = [], []
 
         record_epoch = 0
+        print(f"Batch size: {batch_size}")
+        print(f"Train dataset size (samples): {len(self.rng_train)}")
+        print(f"Batches per epoch: {(len(self.rng_train) + batch_size - 1) // batch_size}")
         for iter_train in range(0, max_iter+1, batch_size):
             if iter_train // len(self.rng_train) != record_epoch:
                 record_epoch = iter_train // len(self.rng_train)
-                random.shuffle(self.rng_train)
+                self._rng.shuffle(self.rng_train)
 
             batch_set = get_minibatch(
                 train_set, self.rng_train, iter_train, batch_size,
@@ -243,7 +250,7 @@ class CF(Base):
                 if max_fscore and f1score >= max_fscore:
                     break
 
-        #self.save_model(os.path.join(self.output_dir, "trained_model.pth"))
+        # self.save_model(os.path.join(self.output_dir, "trained_model.pth"))
 
         return logs
 
@@ -276,7 +283,7 @@ class CF(Base):
         for iter_train in range(0, max_iter+1, batch_size):
             if iter_train // len(self.rng_train) != record_epoch:
                 record_epoch = iter_train // len(self.rng_train)
-                random.shuffle(self.rng_train)
+                self._rng.shuffle(self.rng_train)
             batch_set = get_minibatch(
                 train_set, self.rng_train, iter_train, batch_size,
                 batch_type="train", use_cuda=self.use_cuda)

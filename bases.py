@@ -8,7 +8,7 @@ import torch.nn.functional as F
 import math
 import matplotlib.pyplot as plt
 
-__author__ = "Yifeng Tao"
+__author__ = "Jimmy Shong"
 
 
 # https://discuss.pytorch.org/t/how-to-tile-a-tensor/13853/4

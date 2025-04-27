@@ -10,7 +10,7 @@ from sklearn.metrics import auc, roc_curve, precision_recall_curve
 import torch
 from torch.autograd import Variable
 
-__author__ = "Yifeng Tao"
+__author__ = "Jimmy Shong"
 
 
 def fill_mask(y_trn, m_trn):
@@ -86,6 +86,9 @@ def load_dataset(input_dir="data/input", repository="gdsc", drug_id=-1, shuffle_
   """
 
   assert repository in ['gdsc', 'ccle']
+  
+  if shuffle_feature:
+    np.random.seed(2019)
 
   # load sensitivity data and multi-omics data
   tgt = pd.read_csv(os.path.join(input_dir,repository+'.csv'), index_col=0)

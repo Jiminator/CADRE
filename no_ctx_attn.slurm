@@ -11,7 +11,7 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --gpus-per-task=1
 #SBATCH --gpu-bind=closest
-#SBATCH -t 02:00:00
+#SBATCH -t 00:10:00
 #SBATCH -e slurm-%j.err
 #SBATCH -o slurm-%j.out
 
@@ -24,4 +24,8 @@ echo "job is starting on `hostname`"
 
 # run the container binary with arguments: python3 <program.py>
 # --bind /projects/bbXX  # add to apptainer arguments to mount directory inside container
-apptainer run --nv --bind /scratch/bcrn/jshong /scratch/bcrn/jshong/python.sif /bin/bash -c "cd CADRE/; python3 run_cf.py > myjob.out"
+cd /scratch/bdkz/jshong/CADRE
+source ~/miniconda3/etc/profile.d/conda.sh 
+conda activate cadre
+
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_attention=True --use_cntx_attn=False
