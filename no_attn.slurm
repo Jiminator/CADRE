@@ -11,7 +11,7 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --gpus-per-task=1
 #SBATCH --gpu-bind=closest
-#SBATCH -t 00:10:00
+#SBATCH -t 06:00:00
 #SBATCH -e slurm-%j.err
 #SBATCH -o slurm-%j.out
 

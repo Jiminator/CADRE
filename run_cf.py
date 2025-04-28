@@ -147,7 +147,7 @@ if __name__ == "__main__":
         )
 
     for trial in range(0, 100):
-        if os.path.exists("data/output/cf-rep/logs"+str(trial)+".pkl"):
+        if os.path.exists("data/output/cf/logs"+str(trial)+".pkl"):
             continue
         print(trial)
         with open("data/output/cf/logs"+str(trial)+".pkl", "wb") as f:

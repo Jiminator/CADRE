@@ -2,7 +2,7 @@
 import numpy as np
 import random
 import os
-
+import time
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -49,9 +49,11 @@ class CF(Base):
         self._rng = random.Random(self.seed)
 
         self.rng_train = [idx for idx in range(self.train_size)]
+        # random.shuffle(self.rng_train)
         self._rng.shuffle(self.rng_train)
 
         self.rng_test = [idx for idx in range(self.test_size)]
+        # random.shuffle(self.rng_test)
         self._rng.shuffle(self.rng_test)
 
         self.omic = args.omic
@@ -169,10 +171,21 @@ class CF(Base):
         print(f"Batch size: {batch_size}")
         print(f"Train dataset size (samples): {len(self.rng_train)}")
         print(f"Batches per epoch: {(len(self.rng_train) + batch_size - 1) // batch_size}")
+        epoch_times = []  # <--- Store all epoch runtimes here
+        epoch_start_time = time.time()  # <--- Start first epoch timer
         for iter_train in range(0, max_iter+1, batch_size):
             if iter_train // len(self.rng_train) != record_epoch:
+                 # Measure elapsed time for previous epoch
+                epoch_end_time = time.time()
+                elapsed = epoch_end_time - epoch_start_time
+                epoch_times.append(elapsed)
+
+                print(f"Epoch {record_epoch} finished in {elapsed:.2f} seconds")
+
                 record_epoch = iter_train // len(self.rng_train)
                 self._rng.shuffle(self.rng_train)
+                # random.shuffle(self.rng_train)
+                epoch_start_time = time.time()  # Restart timer for new epoch
 
             batch_set = get_minibatch(
                 train_set, self.rng_train, iter_train, batch_size,
@@ -247,11 +260,18 @@ class CF(Base):
 
                 tgts_train, prds_train, msks_train = [], [], []
                 losses, losses_ent = [], []
-                if max_fscore and f1score >= max_fscore:
-                    break
+                # if max_fscore and f1score >= max_fscore:
+                #     break
 
         # self.save_model(os.path.join(self.output_dir, "trained_model.pth"))
+        # Save the final epoch's time (in case last epoch finishes mid-loop)
+        epoch_end_time = time.time()
+        elapsed = epoch_end_time - epoch_start_time
+        epoch_times.append(elapsed)
+        print(f"Epoch {record_epoch} finished in {elapsed:.2f} seconds")
 
+        print(f"Average epoch runtime: {np.mean(epoch_times):.2f} seconds")
+        print(f"Total training time: {np.sum(epoch_times):.2f} GPU seconds")
         return logs
 
 
@@ -284,6 +304,7 @@ class CF(Base):
             if iter_train // len(self.rng_train) != record_epoch:
                 record_epoch = iter_train // len(self.rng_train)
                 self._rng.shuffle(self.rng_train)
+                # random.shuffle(self.rng_train)
             batch_set = get_minibatch(
                 train_set, self.rng_train, iter_train, batch_size,
                 batch_type="train", use_cuda=self.use_cuda)

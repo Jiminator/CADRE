@@ -1,0 +1,40 @@
+job is starting on gpua079.delta.ncsa.illinois.edu
+Loading drug dataset...
+Hyperparameters:
+Namespace(is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=0.6452, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+Training...
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+[0,0] | tst acc:52.5, f1:43.3, auc:53.3 | trn acc:49.3, f1:36.2, auc:50.6 | loss:4.142
+Epoch 0 finished in 4.19 seconds
+[1,348] | tst acc:59.7, f1:50.4, auc:59.8 | trn acc:54.6, f1:41.6, auc:55.4 | loss:2.869
+Epoch 1 finished in 4.12 seconds
+Epoch 2 finished in 3.95 seconds
+[3,20] | tst acc:60.1, f1:48.5, auc:61.4 | trn acc:60.5, f1:45.4, auc:60.3 | loss:0.691
+Epoch 3 finished in 4.11 seconds
+[4,368] | tst acc:61.2, f1:48.0, auc:58.8 | trn acc:60.7, f1:45.6, auc:61.1 | loss:0.693
+Epoch 4 finished in 4.15 seconds
+Epoch 5 finished in 3.90 seconds
+[6,40] | tst acc:58.4, f1:47.7, auc:58.9 | trn acc:60.9, f1:45.8, auc:61.5 | loss:0.692
+Epoch 6 finished in 4.16 seconds
+[7,388] | tst acc:58.6, f1:46.4, auc:62.7 | trn acc:61.1, f1:45.9, auc:61.3 | loss:0.680
+Epoch 7 finished in 4.11 seconds
+Epoch 8 finished in 3.94 seconds
+[9,60] | tst acc:64.4, f1:53.0, auc:68.1 | trn acc:63.1, f1:47.6, auc:65.2 | loss:0.643
+Epoch 9 finished in 4.11 seconds
+[10,408] | tst acc:72.3, f1:61.3, auc:76.1 | trn acc:66.3, f1:50.4, auc:68.8 | loss:0.615
+Epoch 10 finished in 4.16 seconds
+Epoch 11 finished in 3.90 seconds
+[12,80] | tst acc:70.1, f1:58.1, auc:75.4 | trn acc:69.0, f1:52.6, auc:71.7 | loss:0.588
+Epoch 12 finished in 4.16 seconds
+[13,428] | tst acc:74.8, f1:63.6, auc:77.7 | trn acc:71.4, f1:54.9, auc:74.3 | loss:0.563
+Epoch 13 finished in 4.11 seconds
+Epoch 14 finished in 3.94 seconds
+[15,100] | tst acc:72.5, f1:58.8, auc:77.7 | trn acc:73.8, f1:57.6, auc:76.5 | loss:0.540
+Epoch 15 finished in 4.11 seconds
+[16,448] | tst acc:77.8, f1:66.5, auc:82.6 | trn acc:75.3, f1:59.0, auc:77.8 | loss:0.524
+Epoch 16 finished in 2.86 seconds
+Average epoch runtime: 4.00 seconds
+Total training time: 67.97 GPU seconds
+0
