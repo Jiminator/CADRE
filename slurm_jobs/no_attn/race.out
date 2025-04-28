@@ -62,4 +62,7 @@ Epoch 30 finished in 0.33 seconds
 Epoch 31 finished in 0.30 seconds
 Average epoch runtime: 0.28 seconds
 Total training time: 8.93 GPU seconds
-0
+
+real	0m25.680s
+user	0m15.294s
+sys	0m2.128s

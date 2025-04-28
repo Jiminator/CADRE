@@ -199,6 +199,7 @@ class CF(Base):
             lr, mom = ocp.calc() # calculate learning rate using CLR
 
             if lr == -1: # the stopping criteria
+                print("LR IS -1")
                 break
             for pg in self.optimizer.param_groups: # update learning rate
                 pg['lr'] = lr
@@ -260,8 +261,12 @@ class CF(Base):
 
                 tgts_train, prds_train, msks_train = [], [], []
                 losses, losses_ent = [], []
+                
                 if max_fscore and f1score >= max_fscore:
+                    print("Reached Max F-Score at iteration:", iter_train)
                     break
+            if iter_train + batch_size >= max_iter:
+                print("Reached final batch of training at iter =", iter_train)
 
         # self.save_model(os.path.join(self.output_dir, "trained_model.pth"))
         # Save the final epoch's time (in case last epoch finishes mid-loop)

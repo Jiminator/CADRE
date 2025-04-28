@@ -50,4 +50,7 @@ Epoch 23 finished in 3.38 seconds
 Epoch 24 finished in 1.06 seconds
 Average epoch runtime: 3.44 seconds
 Total training time: 85.93 GPU seconds
-0
+
+real	1m41.935s
+user	1m36.231s
+sys	0m3.846s

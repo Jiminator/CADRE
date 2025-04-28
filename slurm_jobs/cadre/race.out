@@ -37,4 +37,7 @@ Epoch 15 finished in 4.11 seconds
 Epoch 16 finished in 2.86 seconds
 Average epoch runtime: 4.00 seconds
 Total training time: 67.97 GPU seconds
-0
+
+real	1m22.889s
+user	1m19.540s
+sys	0m3.735s

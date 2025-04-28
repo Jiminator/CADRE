@@ -127,4 +127,7 @@ Epoch 70 finished in 3.42 seconds
 Epoch 71 finished in 0.04 seconds
 Average epoch runtime: 3.48 seconds
 Total training time: 250.90 GPU seconds
-0
+
+real	4m26.311s
+user	1m7.941s
+sys	3m16.644s
