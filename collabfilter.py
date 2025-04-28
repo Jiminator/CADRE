@@ -260,8 +260,8 @@ class CF(Base):
 
                 tgts_train, prds_train, msks_train = [], [], []
                 losses, losses_ent = [], []
-                # if max_fscore and f1score >= max_fscore:
-                #     break
+                if max_fscore and f1score >= max_fscore:
+                    break
 
         # self.save_model(os.path.join(self.output_dir, "trained_model.pth"))
         # Save the final epoch's time (in case last epoch finishes mid-loop)
