@@ -11,7 +11,7 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --gpus-per-task=1
 #SBATCH --gpu-bind=closest
-#SBATCH -t 00:15:00
+#SBATCH -t 00:20:00
 #SBATCH -e slurm-%j.err
 #SBATCH -o slurm-%j.out
 
@@ -28,4 +28,6 @@ cd /scratch/bdkz/jshong/CADRE
 source ~/miniconda3/etc/profile.d/conda.sh 
 conda activate cadre
 
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_attention=True --use_cntx_attn=False
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --shuffle=True
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --shuffle=True
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --shuffle=True

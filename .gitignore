@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /data/output/cf
+
+slurm_jobs/hidden

@@ -88,6 +88,7 @@ def load_dataset(input_dir="data/input", repository="gdsc", drug_id=-1, shuffle_
   assert repository in ['gdsc', 'ccle']
   
   if shuffle_feature:
+    print("SHUFFLING FEATURES")
     np.random.seed(2019)
 
   # load sensitivity data and multi-omics data

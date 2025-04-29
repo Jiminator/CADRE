@@ -7,11 +7,14 @@ Currently Loaded Modules:
  
 
 
-real	7m36.534s
-user	6m58.648s
-sys	0m5.873s
+real	5m4.005s
+user	4m55.849s
+sys	0m2.623s
 
-real	7m15.421s
-user	6m59.242s
-sys	0m6.922s
-slurmstepd: error: *** JOB 9454189 ON gpua074 CANCELLED AT 2025-04-28T17:41:40 DUE TO TIME LIMIT ***
+real	4m56.834s
+user	4m55.770s
+sys	0m2.325s
+
+real	4m56.764s
+user	4m55.755s
+sys	0m2.194s

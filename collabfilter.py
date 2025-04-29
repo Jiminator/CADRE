@@ -77,6 +77,8 @@ class CF(Base):
         self.repository = args.repository
         
         self.input_dir = args.input_dir
+        
+        self.use_oc = args.use_oc
 
 
     def build(self, ptw_ids):
@@ -162,7 +164,9 @@ class CF(Base):
         test_inc_size: int
         interval of running a test/evaluation
         """
-        ocp = OneCycle(max_iter//batch_size, self.learning_rate)
+        if self.use_oc:
+            print("INITIALIZING ONE CYCLE")
+            ocp = OneCycle(max_iter//batch_size, self.learning_rate)
 
         tgts_train, prds_train, msks_train = [], [], []
         losses, losses_ent = [], []
@@ -196,14 +200,15 @@ class CF(Base):
             msks = batch_set["msk"]
 
 
-            lr, mom = ocp.calc() # calculate learning rate using CLR
+            if self.use_oc:
+                lr, mom = ocp.calc() # calculate learning rate using CLR
 
-            if lr == -1: # the stopping criteria
-                print("LR IS -1")
-                break
-            for pg in self.optimizer.param_groups: # update learning rate
-                pg['lr'] = lr
-                pg['momentum'] = mom
+                if lr == -1: # the stopping criteria
+                    print("LR IS -1")
+                    break
+                for pg in self.optimizer.param_groups: # update learning rate
+                    pg['lr'] = lr
+                    pg['momentum'] = mom
 
             self.optimizer.zero_grad()
 
@@ -262,19 +267,31 @@ class CF(Base):
                 tgts_train, prds_train, msks_train = [], [], []
                 losses, losses_ent = [], []
                 
-                if max_fscore and f1score >= max_fscore:
+                if max_fscore != -1 and f1score >= max_fscore:
                     print("Reached Max F-Score at iteration:", iter_train)
                     break
             if iter_train + batch_size >= max_iter:
                 print("Reached final batch of training at iter =", iter_train)
 
         # self.save_model(os.path.join(self.output_dir, "trained_model.pth"))
+        
         # Save the final epoch's time (in case last epoch finishes mid-loop)
         epoch_end_time = time.time()
         elapsed = epoch_end_time - epoch_start_time
         epoch_times.append(elapsed)
         print(f"Epoch {record_epoch} finished in {elapsed:.2f} seconds")
+        precision_train, recall_train, f1score_train, accuracy_train, auc_train = evaluate(
+                    tgts_train, msks_train, prds_train, epsilon=self.epsilon
+                )
 
+        tgts, msks, prds, _, _ = self.test(test_set, test_batch_size)
+
+        precision, recall, f1score, accuracy, auc = evaluate(tgts, msks, prds, epsilon=self.epsilon)
+
+        print("[%d,%d] | tst acc:%.1f, f1:%.1f, auc:%.1f | trn acc:%.1f, f1:%.1f, auc:%.1f | loss:%.3f"%( iter_train//len(self.rng_train),
+            iter_train%len(self.rng_train), 100.0*accuracy, 100.0*f1score, 100.0*auc, 100.0*accuracy_train, 100.0*f1score_train, 100.0*auc_train,
+            np.mean(losses)))
+        
         print(f"Average epoch runtime: {np.mean(epoch_times):.2f} seconds")
         print(f"Total training time: {np.sum(epoch_times):.2f} GPU seconds")
         return logs

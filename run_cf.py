@@ -34,6 +34,8 @@ parser.add_argument("--use_cuda", help="whether to use GPU or not", type=bool_ex
 # parser.add_argument("--use_relu", help="whether to use relu or not", type=bool_ext, default=False)
 parser.add_argument("--use_relu", help="whether to use relu or not", type=bool_ext, default=True)
 parser.add_argument("--init_gene_emb", help="whether to use pretrained gene embedding or not", type=bool_ext, default=True)
+parser.add_argument("--use_oc", help="whether to use onecycle or not", type=bool_ext, default=True)
+parser.add_argument("--shuffle", help="whether to shuffle", type=bool_ext, default=False)
 
 parser.add_argument("--omic", help="type of omics data, can be exp, mut, cnv, met, mul", type=str, default="exp")
 
@@ -50,7 +52,8 @@ parser.add_argument("--use_hid_lyr", help="whether to use hidden layer in the en
 # parser.add_argument("--max_iter", help="maximum number of training iterations", type=int, default=int(384000))
 parser.add_argument("--max_iter", help="maximum number of training iterations", type=int, default=int(48000))
 # parser.add_argument("--max_fscore", help="maximum f1 score", type=float, default=0.6)
-parser.add_argument("--max_fscore", help="maximum f1 score", type=float, default=0.6452)
+# parser.add_argument("--max_fscore", help="maximum f1 score", type=float, default=0.6452)
+parser.add_argument("--max_fscore", help="maximum f1 score", type=float, default=-1)
 parser.add_argument("--dropout_rate", help="probability of an element to be zero-ed", type=float, default=0.6)#0.3
 
 parser.add_argument("--learning_rate", help="learning rate for SGD", type=float, default=0.3)
@@ -67,7 +70,7 @@ args.use_cuda = args.use_cuda and torch.cuda.is_available()
 
 print("Loading drug dataset...")
 # dataset, ptw_ids = load_dataset(input_dir=args.input_dir, repository=args.repository, drug_id=args.drug_id)
-dataset, ptw_ids = load_dataset(input_dir=args.input_dir, repository=args.repository, drug_id=args.drug_id, shuffle_feature=True)
+dataset, ptw_ids = load_dataset(input_dir=args.input_dir, repository=args.repository, drug_id=args.drug_id, shuffle_feature=args.shuffle)
 
 train_set, test_set = split_dataset(dataset, ratio=0.8)
 
@@ -96,6 +99,7 @@ print(args)
 
 if __name__ == "__main__":
     model = CF(args)
+    print("HIDDEN EMBEDDING SIZE:", args.hidden_dim_enc)
     model.build(ptw_ids)
 
     if args.use_cuda:
@@ -146,10 +150,10 @@ if __name__ == "__main__":
             logs=logs
         )
 
-    for trial in range(0, 100):
-        if os.path.exists("data/output/cf/logs"+str(trial)+".pkl"):
-            continue
-        print(trial)
-        with open("data/output/cf/logs"+str(trial)+".pkl", "wb") as f:
-            pickle.dump(logs, f, protocol=2)
-        break
+    # for trial in range(0, 100):
+    #     if os.path.exists("data/output/cf/logs"+str(trial)+".pkl"):
+    #         continue
+    #     print(trial)
+    #     with open("data/output/cf/logs"+str(trial)+".pkl", "wb") as f:
+    #         pickle.dump(logs, f, protocol=2)
+    #     break

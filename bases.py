@@ -224,9 +224,12 @@ class ExpEncoder(nn.Module):
 
     self.use_hid_lyr = use_hid_lyr
     self.use_relu = use_relu
+    if self.use_relu:
+      print("USING RELU")
     self.repository = repository
 
     if init_gene_emb:
+      print("USING PRETRAING EMBEDDINGS")
       if self.repository == 'gdsc':
         #GDSC dataset
         gene_emb_pretrain = np.genfromtxt(os.path.join(input_dir, 'exp_emb_gdsc.csv'), delimiter=',')
@@ -241,10 +244,11 @@ class ExpEncoder(nn.Module):
           num_embeddings=omc_size+1,
           embedding_dim=embedding_dim,
           padding_idx=0)
-
+    print("DROPOUT RATE:", dropout_rate)
     self.layer_dropout_0 = nn.Dropout(p=dropout_rate)
 
     if self.use_hid_lyr:
+      print("USING HIDDEN LAYER")
       self.layer_w_1 = nn.Linear(
           in_features=embedding_dim,
           out_features=hidden_dim,
@@ -256,7 +260,7 @@ class ExpEncoder(nn.Module):
     self.use_cntx_attn = use_cntx_attn
     # additional self-attention is used if specified
     if self.use_attention:
-
+      print("USING SELF ATTENTION")
       self.layer_w_0 = nn.Linear(
           in_features=embedding_dim,
           out_features=attention_size,
@@ -268,6 +272,7 @@ class ExpEncoder(nn.Module):
           bias=True)
 
       if self.use_cntx_attn:
+        print("USING CONTEXTUAL ATTENTION")
         self.layer_emb_ptw = nn.Embedding(
             num_embeddings=max(ptw_ids)+1,
             embedding_dim=attention_size)
