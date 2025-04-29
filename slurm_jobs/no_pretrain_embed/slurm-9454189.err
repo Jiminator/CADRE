@@ -1,0 +1,17 @@
+Running "module reset". Resetting modules to system default. The following $MODULEPATH directories have been removed: None
+
+Currently Loaded Modules:
+  1) gcc/11.4.0      3) cuda/11.8.0         5) slurm-env/0.1
+  2) openmpi/4.1.6   4) cue-login-env/1.1   6) default-s11
+
+ 
+
+
+real	7m36.534s
+user	6m58.648s
+sys	0m5.873s
+
+real	7m15.421s
+user	6m59.242s
+sys	0m6.922s
+slurmstepd: error: *** JOB 9454189 ON gpua074 CANCELLED AT 2025-04-28T17:41:40 DUE TO TIME LIMIT ***
