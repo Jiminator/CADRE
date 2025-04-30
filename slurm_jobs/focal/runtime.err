@@ -1,0 +1,140 @@
+Running "module reset". Resetting modules to system default. The following $MODULEPATH directories have been removed: None
+
+Currently Loaded Modules:
+  1) gcc/11.4.0      3) cuda/11.8.0         5) slurm-env/0.1
+  2) openmpi/4.1.6   4) cue-login-env/1.1   6) default-s11
+
+ 
+
+
+real	5m13.726s
+user	4m59.546s
+sys	0m2.801s
+
+real	5m2.561s
+user	5m0.407s
+sys	0m2.403s
+
+real	5m2.932s
+user	5m0.623s
+sys	0m2.284s
+
+real	5m1.534s
+user	4m59.394s
+sys	0m2.360s
+
+real	5m1.683s
+user	4m59.534s
+sys	0m2.345s
+
+real	5m1.686s
+user	4m59.787s
+sys	0m2.314s
+
+real	5m2.242s
+user	5m0.566s
+sys	0m2.391s
+
+real	5m1.663s
+user	4m59.922s
+sys	0m2.326s
+
+real	5m1.721s
+user	4m59.514s
+sys	0m2.293s
+
+real	5m2.541s
+user	5m0.652s
+sys	0m2.315s
+
+real	5m2.153s
+user	5m0.564s
+sys	0m2.206s
+
+real	5m2.185s
+user	5m0.493s
+sys	0m2.298s
+
+real	5m1.259s
+user	4m59.345s
+sys	0m2.344s
+
+real	5m2.408s
+user	5m0.274s
+sys	0m2.336s
+
+real	5m1.471s
+user	4m59.576s
+sys	0m2.298s
+
+real	5m1.789s
+user	4m59.574s
+sys	0m2.309s
+
+real	5m1.685s
+user	4m59.920s
+sys	0m2.342s
+
+real	5m1.595s
+user	4m59.243s
+sys	0m2.341s
+
+real	5m1.900s
+user	5m0.243s
+sys	0m2.281s
+
+real	5m2.023s
+user	4m59.843s
+sys	0m2.484s
+
+real	5m1.952s
+user	4m59.879s
+sys	0m2.446s
+
+real	5m1.657s
+user	4m59.303s
+sys	0m2.400s
+
+real	5m2.598s
+user	5m0.251s
+sys	0m2.519s
+
+real	5m1.803s
+user	5m0.182s
+sys	0m2.359s
+
+real	5m1.530s
+user	4m59.370s
+sys	0m2.256s
+
+real	5m2.965s
+user	5m1.201s
+sys	0m2.209s
+
+real	5m2.104s
+user	4m59.876s
+sys	0m2.325s
+
+real	5m1.466s
+user	4m59.725s
+sys	0m2.327s
+
+real	5m1.999s
+user	4m59.469s
+sys	0m2.308s
+
+real	5m2.135s
+user	4m59.929s
+sys	0m2.342s
+
+real	5m1.945s
+user	5m0.020s
+sys	0m2.355s
+
+real	5m2.180s
+user	4m59.583s
+sys	0m2.299s
+
+real	5m3.019s
+user	5m0.238s
+sys	0m2.264s

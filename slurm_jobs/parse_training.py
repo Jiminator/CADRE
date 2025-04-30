@@ -2,7 +2,7 @@ import re
 import numpy as np
 
 # Path to your txt file
-filename = 'smaller_embed/log.out'
+filename = 'auto.out'
 
 # Open and read the file
 with open(filename, 'r') as f:

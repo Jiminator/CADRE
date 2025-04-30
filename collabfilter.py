@@ -9,7 +9,7 @@ import torch.optim as optim
 from torch.autograd import Variable
 
 from utils import get_minibatch, evaluate
-from bases import Base, DrugDecoder, ExpEncoder, CLR, OneCycle
+from bases import Base, DrugDecoder, ExpEncoder, CLR, OneCycle, FocalLoss
 
 __author__ = "Jimmy Shong"
 
@@ -79,6 +79,14 @@ class CF(Base):
         self.input_dir = args.input_dir
         
         self.use_oc = args.use_oc
+        
+        self.alpha = args.alpha
+        
+        self.gamma = args.gamma
+        
+        self.focal = args.focal
+        
+        self.adam = args.adam
 
 
     def build(self, ptw_ids):
@@ -100,16 +108,27 @@ class CF(Base):
             self.embedding_dim, self.drg_size
         )
 
-        self.optimizer = optim.SGD(
-            self.parameters(),
-            lr=self.learning_rate,
-            momentum=0.95,
-            weight_decay=self.weight_decay
-        )
+        if self.adam:
+            self.optimizer = optim.AdamW(
+                self.parameters(),
+                lr=0.0001,
+                weight_decay=self.weight_decay
+            )
+        else:
+            self.optimizer = optim.SGD(
+                self.parameters(),
+                lr=self.learning_rate,
+                momentum=0.95,
+                weight_decay=self.weight_decay
+            )
 
         # multi-label loss with mask
         # https://pytorch.org/docs/master/nn.html#bcewithlogitsloss
-        self.sigmoid_entropy_loss = nn.BCEWithLogitsLoss(reduction="none")
+        if self.focal:
+            print("USING FOCAL LOSS")
+            self.sigmoid_entropy_loss = FocalLoss(alpha=self.alpha, gamma=self.gamma, reduction='none')
+        else:
+            self.sigmoid_entropy_loss = nn.BCEWithLogitsLoss(reduction="none")
 
 
     def forward(self, batch_set):
@@ -166,7 +185,10 @@ class CF(Base):
         """
         if self.use_oc:
             print("INITIALIZING ONE CYCLE")
-            ocp = OneCycle(max_iter//batch_size, self.learning_rate)
+            if self.adam:
+                ocp = OneCycle(max_iter // batch_size, max_lr=self.learning_rate, div=25)
+            else:
+                ocp = OneCycle(max_iter//batch_size, self.learning_rate)
 
         tgts_train, prds_train, msks_train = [], [], []
         losses, losses_ent = [], []
@@ -206,9 +228,13 @@ class CF(Base):
                 if lr == -1: # the stopping criteria
                     print("LR IS -1")
                     break
-                for pg in self.optimizer.param_groups: # update learning rate
-                    pg['lr'] = lr
-                    pg['momentum'] = mom
+                if self.adam:
+                    for pg in self.optimizer.param_groups:
+                        pg['lr'] = lr  # only update LR
+                else:
+                    for pg in self.optimizer.param_groups: # update learning rate
+                        pg['lr'] = lr
+                        pg['momentum'] = mom
 
             self.optimizer.zero_grad()
 

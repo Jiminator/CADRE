@@ -45,7 +45,7 @@ parser.add_argument("--use_cntx_attn", help="whether to use contextual attention
 parser.add_argument("--embedding_dim", help="embedding dimension", type=int, default=200) #200
 parser.add_argument("--attention_size", help="size of attention parameter beta_j", type=int, default=128) #150
 parser.add_argument("--attention_head", help="number of attention heads", type=int, default=8) #8
-parser.add_argument("--hidden_dim_enc", help="dimension of hidden layer in encoder", type=int, default=200) #200
+parser.add_argument("--hidden_dim_enc", help="dimension of hidden layer in encoder", type=int, default=100) #200
 # parser.add_argument("--use_hid_lyr", help="whether to use hidden layer in the encoder or not", type=bool_ext, default=False)
 parser.add_argument("--use_hid_lyr", help="whether to use hidden layer in the encoder or not", type=bool_ext, default=True)
 
@@ -64,6 +64,12 @@ parser.add_argument("--test_inc_size", help="increment interval size between log
 
 # parser.add_argument("--model_label", help="model name", type=str, default="CF")
 parser.add_argument("--model_label", help="model name", type=str, default="cntx-attn-gdsc")
+
+parser.add_argument("--focal", help="whether to use focal or not", type=bool_ext, default=False)
+parser.add_argument("--alpha", help="alpha for focal loss", type=float, default=0.6)
+parser.add_argument("--gamma", help="gamma for focal loss", type=float, default=2.0)
+
+parser.add_argument("--adam", help="whether to use AdamW or not", type=bool_ext, default=False)
 
 args = parser.parse_args()
 args.use_cuda = args.use_cuda and torch.cuda.is_available()
