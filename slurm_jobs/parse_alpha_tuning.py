@@ -1,9 +1,9 @@
 import re
-from statistics import mean
+from statistics import mean, stdev
 from collections import defaultdict
 
 # Load the full input file
-with open("tune_alpha.out", "r") as f:
+with open("slurm-9556659.out", "r") as f:
     lines = f.readlines()
 
 # Initialize storage
@@ -35,13 +35,32 @@ for line in lines:
         total_time = float(time_match.group(1))
         results[current_alpha]["time"].append(total_time)
 
-# Compute averages
+# Compute averages and std devs
 summary = []
 for alpha, metrics in sorted(results.items()):
     avg_acc = mean(metrics["acc"])
     avg_f1 = mean(metrics["f1"])
     avg_time = mean(metrics["time"])
-    summary.append((alpha, round(avg_acc, 2), round(avg_f1, 2), round(avg_time, 2)))
-print(summary)
+    std_acc = stdev(metrics["acc"]) if len(metrics["acc"]) > 1 else 0.0
+    std_f1 = stdev(metrics["f1"]) if len(metrics["f1"]) > 1 else 0.0
+    std_time = stdev(metrics["time"]) if len(metrics["time"]) > 1 else 0.0
+    summary.append((
+        alpha,
+        round(avg_acc, 2), round(std_acc, 2),
+        round(avg_f1, 2), round(std_f1, 2),
+        round(avg_time, 2), round(std_time, 2)
+    ))
+
+# Print results
+for row in summary:
+    print(f"alpha={row[0]:.3f} | acc: {row[1]:.2f}+/-{row[2]:.2f} | f1: {row[3]:.2f}±{row[4]:.2f} | time: {row[5]:.2f}±{row[6]:.2f}")
+
+# Optional: Pandas display
 # import pandas as pd
-# import ace_tools as tools; tools.display_dataframe_to_user(name="Alpha Hyperparameter Tuning Summary", dataframe=pd.DataFrame(summary, columns=["alpha", "avg_test_acc", "avg_test_f1", "avg_training_time (s)"]))
+# import ace_tools as tools
+# df = pd.DataFrame(summary, columns=[
+#     "alpha", "avg_test_acc", "std_test_acc",
+#     "avg_test_f1", "std_test_f1",
+#     "avg_training_time", "std_training_time"
+# ])
+# tools.display_dataframe_to_user(name="Alpha Hyperparameter Tuning Summary", dataframe=df)

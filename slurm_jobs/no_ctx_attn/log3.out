@@ -1,0 +1,74 @@
+job is starting on gpua021.delta.ncsa.illinois.edu
+Using fixed seeds: 5497 58475 94707
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=False, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=False, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+INITIALIZING SGD OPTIMIZER
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.04 seconds
+[71,4] | tst acc:78.9, f1:63.1, auc:82.7 | trn acc:81.6, f1:69.4, auc:86.2 | loss:0.424
+Average epoch runtime: 3.79 seconds
+Total training time: 273.23 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=False, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=False, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+INITIALIZING SGD OPTIMIZER
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.04 seconds
+[71,4] | tst acc:78.6, f1:63.5, auc:82.7 | trn acc:82.1, f1:69.0, auc:86.6 | loss:0.413
+Average epoch runtime: 3.79 seconds
+Total training time: 272.91 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=False, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=False, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+INITIALIZING SGD OPTIMIZER
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.04 seconds
+[71,4] | tst acc:78.1, f1:63.0, auc:82.8 | trn acc:82.2, f1:69.0, auc:86.5 | loss:0.413
+Average epoch runtime: 3.79 seconds
+Total training time: 273.23 GPU seconds

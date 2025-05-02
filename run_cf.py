@@ -3,26 +3,12 @@
 import os
 import argparse
 import pickle
-import random
-import numpy as np
-
-SEED = 2019
-random.seed(SEED)
-np.random.seed(SEED)
-
-import torch
-torch.manual_seed(SEED)
-if torch.cuda.is_available():
-    torch.cuda.manual_seed(SEED)
-    torch.cuda.manual_seed_all(SEED)
-
-from utils import fill_mask, bool_ext, load_dataset, split_dataset
-
-from collabfilter import CF
+from utils import bool_ext
 
 __author__ = "Jimmy Shong"
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--seed", help="manual seed", type=int, default=2019)
 
 parser.add_argument("--is_train", help="whether to train or not (tune)", type=bool_ext, default=True)
 
@@ -34,7 +20,8 @@ parser.add_argument("--use_cuda", help="whether to use GPU or not", type=bool_ex
 # parser.add_argument("--use_relu", help="whether to use relu or not", type=bool_ext, default=False)
 parser.add_argument("--use_relu", help="whether to use relu or not", type=bool_ext, default=True)
 parser.add_argument("--init_gene_emb", help="whether to use pretrained gene embedding or not", type=bool_ext, default=True)
-parser.add_argument("--use_oc", help="whether to use onecycle or not", type=bool_ext, default=True)
+# parser.add_argument("--use_oc", help="whether to use onecycle or not", type=bool_ext, default=True)
+parser.add_argument("--scheduler", help="determine what schedule to use (onecycle, cosine, or none)", type=str, default="onecycle")
 parser.add_argument("--shuffle", help="whether to shuffle", type=bool_ext, default=False)
 
 parser.add_argument("--omic", help="type of omics data, can be exp, mut, cnv, met, mul", type=str, default="exp")
@@ -45,7 +32,7 @@ parser.add_argument("--use_cntx_attn", help="whether to use contextual attention
 parser.add_argument("--embedding_dim", help="embedding dimension", type=int, default=200) #200
 parser.add_argument("--attention_size", help="size of attention parameter beta_j", type=int, default=128) #150
 parser.add_argument("--attention_head", help="number of attention heads", type=int, default=8) #8
-parser.add_argument("--hidden_dim_enc", help="dimension of hidden layer in encoder", type=int, default=100) #200
+parser.add_argument("--hidden_dim_enc", help="dimension of hidden layer in encoder", type=int, default=200) #200
 # parser.add_argument("--use_hid_lyr", help="whether to use hidden layer in the encoder or not", type=bool_ext, default=False)
 parser.add_argument("--use_hid_lyr", help="whether to use hidden layer in the encoder or not", type=bool_ext, default=True)
 
@@ -56,7 +43,7 @@ parser.add_argument("--max_iter", help="maximum number of training iterations", 
 parser.add_argument("--max_fscore", help="maximum f1 score", type=float, default=-1)
 parser.add_argument("--dropout_rate", help="probability of an element to be zero-ed", type=float, default=0.6)#0.3
 
-parser.add_argument("--learning_rate", help="learning rate for SGD", type=float, default=0.3)
+parser.add_argument("--learning_rate", help="learning rate for optimizer", type=float, default=0.3)
 parser.add_argument("--weight_decay", help="coefficient of l2 regularizer", type=float, default=3e-4)#3e-4
 parser.add_argument("--batch_size", help="training batch size", type=int, default=8)#256
 parser.add_argument("--test_batch_size", help="test batch size", type=int, default=8)
@@ -70,13 +57,32 @@ parser.add_argument("--alpha", help="alpha for focal loss", type=float, default=
 parser.add_argument("--gamma", help="gamma for focal loss", type=float, default=2.0)
 
 parser.add_argument("--adam", help="whether to use AdamW or not", type=bool_ext, default=False)
-
 args = parser.parse_args()
+
+import random
+import numpy as np
+
+SEED = args.seed
+print("SEED:", SEED)
+random.seed(SEED)
+np.random.seed(SEED)
+
+import torch
+torch.manual_seed(SEED)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed(SEED)
+    torch.cuda.manual_seed_all(SEED)
+
+from utils import fill_mask, load_dataset, split_dataset
+
+from collabfilter import CF
+
+
 args.use_cuda = args.use_cuda and torch.cuda.is_available()
 
 print("Loading drug dataset...")
 # dataset, ptw_ids = load_dataset(input_dir=args.input_dir, repository=args.repository, drug_id=args.drug_id)
-dataset, ptw_ids = load_dataset(input_dir=args.input_dir, repository=args.repository, drug_id=args.drug_id, shuffle_feature=args.shuffle)
+dataset, ptw_ids = load_dataset(input_dir=args.input_dir, repository=args.repository, drug_id=args.drug_id, random_seed=SEED, shuffle_feature=args.shuffle)
 
 train_set, test_set = split_dataset(dataset, ratio=0.8)
 
@@ -102,6 +108,8 @@ args.test_size = len(test_set['tmr'])
 print("Hyperparameters:")
 print(args)
 
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 if __name__ == "__main__":
     model = CF(args)
@@ -111,7 +119,9 @@ if __name__ == "__main__":
     if args.use_cuda:
         model = model.cuda()
 
-
+    # total_params = count_parameters(model)
+    # print(f"Total trainable parameters: {total_params:,}")
+    
     logs = {'args':args, 'iter':[],
             'precision':[], 'recall':[],
             'f1score':[], 'accuracy':[], 'auc':[],

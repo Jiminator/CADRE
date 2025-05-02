@@ -1,0 +1,937 @@
+job is starting on gpua064.delta.ncsa.illinois.edu
+Using fixed seeds: 5497 58475 94707
+alpha = 0.0
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.0, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:71.0, f1:0.2, auc:59.6 | trn acc:67.8, f1:0.1, auc:61.4 | loss:0.001
+Average epoch runtime: 4.44 seconds
+Total training time: 319.87 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.0, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:68.7, f1:0.1, auc:59.8 | trn acc:69.2, f1:0.2, auc:61.5 | loss:0.002
+Average epoch runtime: 4.42 seconds
+Total training time: 318.35 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.0, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:67.6, f1:0.1, auc:60.3 | trn acc:69.2, f1:0.1, auc:61.8 | loss:0.001
+Average epoch runtime: 4.43 seconds
+Total training time: 318.71 GPU seconds
+alpha = 0.1
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.1, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.1000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:73.1, f1:17.4, auc:78.8 | trn acc:70.9, f1:19.9, auc:82.2 | loss:0.030
+Average epoch runtime: 4.43 seconds
+Total training time: 319.02 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.1, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.1000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:71.1, f1:17.2, auc:78.4 | trn acc:72.1, f1:19.6, auc:82.5 | loss:0.029
+Average epoch runtime: 4.43 seconds
+Total training time: 318.86 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.1, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.1000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:70.0, f1:16.8, auc:78.9 | trn acc:72.2, f1:19.6, auc:82.3 | loss:0.029
+Average epoch runtime: 4.43 seconds
+Total training time: 319.09 GPU seconds
+alpha = 0.2
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.2, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.2000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:75.5, f1:36.2, auc:80.2 | trn acc:74.7, f1:40.7, auc:83.4 | loss:0.043
+Average epoch runtime: 4.43 seconds
+Total training time: 318.83 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.2, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.2000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:73.6, f1:34.8, auc:79.5 | trn acc:75.6, f1:39.9, auc:83.7 | loss:0.042
+Average epoch runtime: 4.43 seconds
+Total training time: 318.77 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.2, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.2000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:72.7, f1:34.5, auc:80.1 | trn acc:75.7, f1:40.0, auc:83.6 | loss:0.042
+Average epoch runtime: 4.42 seconds
+Total training time: 318.39 GPU seconds
+alpha = 0.3
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.3, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.3000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:77.2, f1:49.5, auc:80.7 | trn acc:77.9, f1:55.1, auc:83.9 | loss:0.051
+Average epoch runtime: 4.42 seconds
+Total training time: 318.48 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.3, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.3000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:75.6, f1:47.8, auc:80.0 | trn acc:78.7, f1:54.6, auc:84.3 | loss:0.050
+Average epoch runtime: 4.42 seconds
+Total training time: 318.44 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.3, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.3000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:74.9, f1:47.4, auc:80.7 | trn acc:78.7, f1:54.4, auc:84.2 | loss:0.050
+Average epoch runtime: 4.42 seconds
+Total training time: 318.22 GPU seconds
+alpha = 0.4
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.4, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.4000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:78.0, f1:57.2, auc:81.0 | trn acc:79.8, f1:63.3, auc:84.3 | loss:0.056
+Average epoch runtime: 4.43 seconds
+Total training time: 319.07 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.4, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.4000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:77.0, f1:56.7, auc:80.4 | trn acc:80.5, f1:62.9, auc:84.6 | loss:0.055
+Average epoch runtime: 4.42 seconds
+Total training time: 318.30 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.4, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.4000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:76.6, f1:56.6, auc:81.0 | trn acc:80.4, f1:62.6, auc:84.5 | loss:0.055
+Average epoch runtime: 4.45 seconds
+Total training time: 320.08 GPU seconds
+alpha = 0.5
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.5, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.5000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:77.8, f1:60.9, auc:81.1 | trn acc:80.4, f1:67.4, auc:84.5 | loss:0.058
+Average epoch runtime: 4.44 seconds
+Total training time: 319.56 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.5, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.5000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:77.3, f1:61.1, auc:80.5 | trn acc:80.9, f1:66.8, auc:84.7 | loss:0.057
+Average epoch runtime: 4.49 seconds
+Total training time: 323.15 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.5, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.5000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:77.3, f1:61.6, auc:81.2 | trn acc:81.0, f1:66.7, auc:84.7 | loss:0.057
+Average epoch runtime: 4.47 seconds
+Total training time: 321.69 GPU seconds
+alpha = 0.6
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.6000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:76.1, f1:62.1, auc:81.0 | trn acc:79.6, f1:68.8, auc:84.5 | loss:0.058
+Average epoch runtime: 4.45 seconds
+Total training time: 320.52 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.6000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:76.3, f1:63.0, auc:80.7 | trn acc:80.0, f1:68.1, auc:84.8 | loss:0.057
+Average epoch runtime: 4.49 seconds
+Total training time: 323.36 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.6000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:76.5, f1:63.7, auc:81.2 | trn acc:80.1, f1:68.2, auc:84.8 | loss:0.057
+Average epoch runtime: 4.53 seconds
+Total training time: 326.49 GPU seconds
+alpha = 0.7
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.7, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.7000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:72.7, f1:61.6, auc:80.8 | trn acc:76.9, f1:68.4, auc:84.5 | loss:0.055
+Average epoch runtime: 4.44 seconds
+Total training time: 319.41 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.7, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.7000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:73.8, f1:63.7, auc:80.8 | trn acc:77.2, f1:67.6, auc:84.7 | loss:0.054
+Average epoch runtime: 4.45 seconds
+Total training time: 320.13 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.7, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.7000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:74.2, f1:64.6, auc:81.1 | trn acc:77.3, f1:67.5, auc:84.7 | loss:0.054
+Average epoch runtime: 4.44 seconds
+Total training time: 319.51 GPU seconds
+alpha = 0.8
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.8, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.8000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:66.4, f1:59.3, auc:80.5 | trn acc:71.4, f1:65.9, auc:84.3 | loss:0.047
+Average epoch runtime: 4.42 seconds
+Total training time: 318.50 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.8, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.8000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:68.6, f1:62.5, auc:80.7 | trn acc:71.2, f1:64.7, auc:84.4 | loss:0.047
+Average epoch runtime: 4.46 seconds
+Total training time: 321.31 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.8, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.8000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:69.0, f1:63.3, auc:80.9 | trn acc:71.4, f1:64.8, auc:84.4 | loss:0.047
+Average epoch runtime: 4.42 seconds
+Total training time: 318.30 GPU seconds
+alpha = 0.9
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.9, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.9000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:55.7, f1:54.9, auc:79.7 | trn acc:60.0, f1:60.2, auc:83.7 | loss:0.035
+Average epoch runtime: 4.43 seconds
+Total training time: 318.82 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.9, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.9000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:57.6, f1:57.7, auc:80.2 | trn acc:59.5, f1:58.8, auc:83.7 | loss:0.034
+Average epoch runtime: 4.43 seconds
+Total training time: 318.74 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.9, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.9000)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:59.1, f1:59.5, auc:80.2 | trn acc:59.5, f1:58.7, auc:83.8 | loss:0.034
+Average epoch runtime: 4.42 seconds
+Total training time: 318.17 GPU seconds
+alpha = 1.0
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=1.0, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(1.)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:29.5, f1:45.2, auc:67.6 | trn acc:32.7, f1:48.9, auc:69.8 | loss:0.001
+Average epoch runtime: 4.42 seconds
+Total training time: 318.52 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=1.0, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(1.)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:31.9, f1:47.9, auc:67.6 | trn acc:31.4, f1:47.4, auc:69.7 | loss:0.001
+Average epoch runtime: 4.42 seconds
+Total training time: 318.37 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='onecycle', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=1.0, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(1.)
+Training...
+INITIALIZING ONE CYCLE
+Training with optimizer: SGD
+Scheduler: onecycle
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:33.0, f1:49.1, auc:67.7 | trn acc:31.3, f1:47.2, auc:69.5 | loss:0.001
+Average epoch runtime: 4.43 seconds
+Total training time: 318.98 GPU seconds

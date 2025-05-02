@@ -2,7 +2,7 @@ import re
 import numpy as np
 
 # Path to your txt file
-filename = 'auto.out'
+filename = 'alpha_auto3.out'
 
 # Open and read the file
 with open(filename, 'r') as f:
@@ -12,9 +12,9 @@ with open(filename, 'r') as f:
 runs = text.split("Loading drug dataset...")[1:]  # Skip the first split
 
 # Storage
-last_test_acc = []
-last_test_f1 = []
-last_train_time = []
+max_test_acc = []
+max_test_f1 = []
+train_times = []
 
 # Regular expressions
 metrics_pattern = re.compile(r"\[\d+,\d+\] \| tst acc:(\d+\.\d+), f1:(\d+\.\d+)")
@@ -24,20 +24,28 @@ train_time_pattern = re.compile(r"Total training time: ([\d\.]+) GPU seconds")
 for run in runs:
     metrics = metrics_pattern.findall(run)
     if metrics:
-        acc, f1 = metrics[-1]  # Only take the LAST recorded [epoch,batch]
-        last_test_acc.append(float(acc))
-        last_test_f1.append(float(f1))
+        # Find max F1 and corresponding accuracy
+        max_f1 = -1.0
+        best_acc = -1.0
+        for acc, f1 in metrics:
+            f1 = float(f1)
+            acc = float(acc)
+            if f1 > max_f1:
+                max_f1 = f1
+                best_acc = acc
+        max_test_f1.append(max_f1)
+        max_test_acc.append(best_acc)
     
     time_match = train_time_pattern.search(run)
     if time_match:
-        last_train_time.append(float(time_match.group(1)))
+        train_times.append(float(time_match.group(1)))
 
 # Convert to numpy arrays
-last_test_acc = np.array(last_test_acc)
-last_test_f1 = np.array(last_test_f1)
-last_train_time = np.array(last_train_time)
+max_test_acc = np.array(max_test_acc)
+max_test_f1 = np.array(max_test_f1)
+train_times = np.array(train_times)
 
 # Print mean and sample std
-print(f"Final Test Accuracy: Mean = {last_test_acc.mean():.2f} +/- {last_test_acc.std(ddof=1):.2f}")
-print(f"Final Test F1 Score: Mean = {last_test_f1.mean():.2f} +/- {last_test_f1.std(ddof=1):.2f}")
-print(f"Total Training Time: Mean = {last_train_time.mean():.2f} +/- {last_train_time.std(ddof=1):.2f}")
+print(f"Max Test Accuracy (at max F1): Mean = {max_test_acc.mean():.2f} +/- {max_test_acc.std(ddof=1):.2f}")
+print(f"Max Test F1 Score: Mean = {max_test_f1.mean():.2f} +/- {max_test_f1.std(ddof=1):.2f}")
+print(f"Total Training Time: Mean = {train_times.mean():.2f} +/- {train_times.std(ddof=1):.2f}")

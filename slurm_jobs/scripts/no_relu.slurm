@@ -28,6 +28,12 @@ cd /scratch/bdkz/jshong/CADRE
 source ~/miniconda3/etc/profile.d/conda.sh 
 conda activate cadre
 
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_relu=False
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_relu=False
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_relu=False
+SEEDS=(5497 58475 94707)
+echo "Using fixed seeds: ${SEEDS[@]}"
+
+export PYTHONHASHSEED=${SEEDS[0]}
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_relu=False --seed=${SEEDS[0]}
+export PYTHONHASHSEED=${SEEDS[1]}
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_relu=False --seed=${SEEDS[1]}
+export PYTHONHASHSEED=${SEEDS[2]}
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --use_relu=False --seed=${SEEDS[2]}

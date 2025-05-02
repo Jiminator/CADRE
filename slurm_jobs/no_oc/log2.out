@@ -1,0 +1,212 @@
+job is starting on gpua047.delta.ncsa.illinois.edu
+Using fixed seeds: 5497 58475 94707
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='none', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=False, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+Training...
+USING NO LR SCHEDULING
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+[0,0] | tst acc:52.0, f1:21.4, auc:62.3 | trn acc:52.0, f1:41.1, auc:53.9 | loss:4.221
+[1,348] | tst acc:70.5, f1:30.1, auc:71.4 | trn acc:67.2, f1:52.2, auc:63.6 | loss:1.353
+[3,20] | tst acc:72.5, f1:30.8, auc:72.6 | trn acc:73.9, f1:58.6, auc:73.4 | loss:0.697
+[4,368] | tst acc:72.9, f1:36.1, auc:80.0 | trn acc:74.5, f1:59.1, auc:72.7 | loss:0.617
+[6,40] | tst acc:76.4, f1:38.6, auc:81.3 | trn acc:78.5, f1:64.1, auc:81.5 | loss:0.487
+[7,388] | tst acc:76.6, f1:38.1, auc:81.3 | trn acc:79.5, f1:65.9, auc:83.1 | loss:0.467
+[9,60] | tst acc:77.3, f1:41.6, auc:82.6 | trn acc:80.4, f1:66.9, auc:84.1 | loss:0.452
+[10,408] | tst acc:76.9, f1:38.4, auc:82.2 | trn acc:80.7, f1:67.5, auc:84.6 | loss:0.445
+[12,80] | tst acc:78.8, f1:43.3, auc:83.0 | trn acc:81.1, f1:68.3, auc:85.1 | loss:0.439
+[13,428] | tst acc:78.8, f1:43.9, auc:83.4 | trn acc:81.0, f1:68.4, auc:85.1 | loss:0.439
+[15,100] | tst acc:76.9, f1:40.4, auc:83.6 | trn acc:81.2, f1:68.1, auc:85.4 | loss:0.433
+[16,448] | tst acc:80.3, f1:44.4, auc:84.6 | trn acc:81.5, f1:68.9, auc:85.9 | loss:0.426
+[18,120] | tst acc:78.6, f1:43.0, auc:84.1 | trn acc:81.4, f1:68.9, auc:86.1 | loss:0.426
+[19,468] | tst acc:78.4, f1:41.4, auc:84.0 | trn acc:81.4, f1:68.9, auc:86.0 | loss:0.425
+[21,140] | tst acc:79.3, f1:41.7, auc:82.3 | trn acc:81.5, f1:69.3, auc:86.3 | loss:0.423
+[22,488] | tst acc:78.6, f1:40.2, auc:83.8 | trn acc:81.4, f1:68.6, auc:86.2 | loss:0.423
+[24,160] | tst acc:78.2, f1:43.2, auc:85.0 | trn acc:81.6, f1:69.5, auc:86.4 | loss:0.420
+[25,508] | tst acc:79.5, f1:44.0, auc:85.0 | trn acc:81.6, f1:69.5, auc:86.6 | loss:0.420
+[27,180] | tst acc:77.3, f1:40.2, auc:83.3 | trn acc:81.4, f1:68.7, auc:86.1 | loss:0.423
+[28,528] | tst acc:78.4, f1:42.1, auc:84.4 | trn acc:81.6, f1:69.3, auc:86.6 | loss:0.418
+[30,200] | tst acc:77.3, f1:41.6, auc:85.2 | trn acc:81.4, f1:69.0, auc:86.3 | loss:0.422
+[31,548] | tst acc:77.1, f1:42.0, auc:86.8 | trn acc:81.4, f1:68.9, auc:86.3 | loss:0.421
+[33,220] | tst acc:76.4, f1:38.6, auc:85.3 | trn acc:81.4, f1:69.2, auc:86.5 | loss:0.421
+[34,568] | tst acc:78.6, f1:40.2, auc:84.5 | trn acc:81.4, f1:69.3, auc:86.5 | loss:0.421
+[36,240] | tst acc:78.8, f1:40.5, auc:83.2 | trn acc:81.7, f1:69.0, auc:86.7 | loss:0.415
+[37,588] | tst acc:78.2, f1:41.2, auc:84.2 | trn acc:81.4, f1:69.1, auc:86.4 | loss:0.421
+[39,260] | tst acc:79.3, f1:41.7, auc:84.5 | trn acc:81.6, f1:69.2, auc:86.7 | loss:0.416
+[40,608] | tst acc:79.5, f1:42.7, auc:85.7 | trn acc:81.4, f1:69.1, auc:86.6 | loss:0.418
+[42,280] | tst acc:77.3, f1:40.2, auc:83.9 | trn acc:81.4, f1:69.1, auc:86.6 | loss:0.419
+[43,628] | tst acc:79.9, f1:42.5, auc:83.3 | trn acc:81.5, f1:69.2, auc:86.6 | loss:0.418
+[45,300] | tst acc:80.3, f1:45.8, auc:85.7 | trn acc:81.7, f1:69.4, auc:86.8 | loss:0.415
+[46,648] | tst acc:75.5, f1:37.8, auc:84.4 | trn acc:81.5, f1:69.2, auc:86.7 | loss:0.418
+[48,320] | tst acc:77.3, f1:42.2, auc:85.2 | trn acc:81.7, f1:69.3, auc:86.8 | loss:0.414
+[49,668] | tst acc:77.9, f1:42.3, auc:84.9 | trn acc:81.4, f1:69.1, auc:86.6 | loss:0.419
+[51,340] | tst acc:79.3, f1:44.4, auc:86.1 | trn acc:81.7, f1:69.5, auc:87.0 | loss:0.412
+[53,12] | tst acc:79.3, f1:43.8, auc:86.1 | trn acc:81.2, f1:68.6, auc:86.3 | loss:0.422
+[54,360] | tst acc:77.3, f1:40.2, auc:85.9 | trn acc:81.7, f1:69.3, auc:86.9 | loss:0.413
+[56,32] | tst acc:79.5, f1:42.7, auc:83.9 | trn acc:81.6, f1:69.5, auc:86.8 | loss:0.416
+[57,380] | tst acc:76.4, f1:37.2, auc:83.2 | trn acc:81.4, f1:69.2, auc:86.7 | loss:0.418
+[59,52] | tst acc:75.5, f1:38.5, auc:82.5 | trn acc:81.6, f1:69.4, auc:86.9 | loss:0.414
+[60,400] | tst acc:76.6, f1:40.2, auc:85.3 | trn acc:81.6, f1:69.2, auc:86.8 | loss:0.414
+[62,72] | tst acc:78.6, f1:41.7, auc:84.8 | trn acc:81.7, f1:69.4, auc:86.9 | loss:0.413
+[63,420] | tst acc:77.7, f1:40.7, auc:83.7 | trn acc:81.4, f1:69.4, auc:86.8 | loss:0.417
+[65,92] | tst acc:78.8, f1:41.2, auc:85.8 | trn acc:81.6, f1:69.1, auc:86.9 | loss:0.413
+[66,440] | tst acc:77.7, f1:37.8, auc:83.2 | trn acc:81.5, f1:69.0, auc:86.7 | loss:0.416
+[68,112] | tst acc:78.6, f1:43.0, auc:86.4 | trn acc:81.7, f1:69.8, auc:87.1 | loss:0.412
+[69,460] | tst acc:78.2, f1:39.8, auc:83.8 | trn acc:81.6, f1:69.2, auc:86.8 | loss:0.414
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:77.5, f1:41.8, auc:85.1 | trn acc:81.2, f1:68.9, auc:86.5 | loss:0.421
+Average epoch runtime: 3.99 seconds
+Total training time: 287.46 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='none', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=False, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+Training...
+USING NO LR SCHEDULING
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+[0,0] | tst acc:48.3, f1:35.4, auc:49.7 | trn acc:52.6, f1:45.1, auc:53.1 | loss:4.060
+[1,348] | tst acc:73.3, f1:54.7, auc:74.7 | trn acc:66.7, f1:49.9, auc:62.9 | loss:1.328
+[3,20] | tst acc:70.4, f1:49.8, auc:70.3 | trn acc:73.4, f1:56.4, auc:72.8 | loss:0.699
+[4,368] | tst acc:77.2, f1:58.9, auc:80.1 | trn acc:74.7, f1:57.9, auc:72.9 | loss:0.617
+[6,40] | tst acc:79.1, f1:63.0, auc:81.1 | trn acc:78.2, f1:62.8, auc:80.7 | loss:0.491
+[7,388] | tst acc:79.6, f1:65.0, auc:83.7 | trn acc:79.7, f1:65.2, auc:82.9 | loss:0.465
+[9,60] | tst acc:78.8, f1:62.7, auc:84.2 | trn acc:80.4, f1:66.0, auc:83.9 | loss:0.451
+[10,408] | tst acc:81.2, f1:66.1, auc:86.2 | trn acc:81.0, f1:66.8, auc:84.6 | loss:0.441
+[12,80] | tst acc:80.5, f1:65.2, auc:86.2 | trn acc:80.9, f1:66.9, auc:84.7 | loss:0.441
+[13,428] | tst acc:81.7, f1:67.8, auc:86.4 | trn acc:81.4, f1:67.3, auc:85.2 | loss:0.432
+[15,100] | tst acc:81.2, f1:68.5, auc:87.8 | trn acc:81.6, f1:68.1, auc:85.5 | loss:0.429
+[16,448] | tst acc:82.9, f1:71.3, auc:87.2 | trn acc:81.6, f1:68.0, auc:85.8 | loss:0.424
+[18,120] | tst acc:82.2, f1:70.4, auc:88.4 | trn acc:81.5, f1:67.9, auc:85.6 | loss:0.426
+[19,468] | tst acc:81.5, f1:69.1, auc:88.9 | trn acc:81.7, f1:68.8, auc:86.2 | loss:0.420
+[21,140] | tst acc:82.0, f1:69.9, auc:88.5 | trn acc:81.7, f1:68.1, auc:86.2 | loss:0.418
+[22,488] | tst acc:82.7, f1:71.9, auc:88.4 | trn acc:81.6, f1:68.4, auc:86.4 | loss:0.418
+[24,160] | tst acc:85.1, f1:75.8, auc:90.1 | trn acc:81.5, f1:68.1, auc:86.1 | loss:0.420
+[25,508] | tst acc:82.0, f1:70.1, auc:88.2 | trn acc:81.6, f1:68.3, auc:86.3 | loss:0.418
+[27,180] | tst acc:84.1, f1:72.0, auc:89.6 | trn acc:81.8, f1:68.4, auc:86.4 | loss:0.415
+[28,528] | tst acc:83.4, f1:71.4, auc:87.7 | trn acc:81.6, f1:68.6, auc:86.5 | loss:0.417
+[30,200] | tst acc:81.5, f1:70.7, auc:87.2 | trn acc:81.8, f1:68.5, auc:86.5 | loss:0.414
+[31,548] | tst acc:80.5, f1:64.3, auc:85.6 | trn acc:81.8, f1:68.6, auc:86.7 | loss:0.413
+[33,220] | tst acc:81.0, f1:69.3, auc:88.4 | trn acc:81.7, f1:68.5, auc:86.5 | loss:0.415
+[34,568] | tst acc:81.5, f1:70.7, auc:87.6 | trn acc:81.8, f1:68.5, auc:86.7 | loss:0.413
+[36,240] | tst acc:83.2, f1:70.8, auc:88.7 | trn acc:81.6, f1:68.2, auc:86.5 | loss:0.415
+[37,588] | tst acc:81.5, f1:68.3, auc:86.8 | trn acc:81.7, f1:68.4, auc:86.7 | loss:0.413
+[39,260] | tst acc:83.7, f1:73.0, auc:88.6 | trn acc:81.7, f1:68.5, auc:86.5 | loss:0.415
+[40,608] | tst acc:82.5, f1:72.0, auc:88.3 | trn acc:81.7, f1:68.4, auc:86.5 | loss:0.416
+[42,280] | tst acc:83.4, f1:73.2, auc:89.3 | trn acc:81.9, f1:68.6, auc:86.7 | loss:0.411
+[43,628] | tst acc:82.2, f1:68.6, auc:87.2 | trn acc:81.4, f1:68.0, auc:86.4 | loss:0.418
+[45,300] | tst acc:83.9, f1:72.4, auc:88.4 | trn acc:81.9, f1:68.8, auc:86.8 | loss:0.411
+[46,648] | tst acc:81.5, f1:67.8, auc:86.8 | trn acc:81.5, f1:68.3, auc:86.4 | loss:0.418
+[48,320] | tst acc:81.2, f1:69.3, auc:88.2 | trn acc:81.7, f1:68.2, auc:86.6 | loss:0.414
+[49,668] | tst acc:82.9, f1:72.2, auc:87.9 | trn acc:81.6, f1:68.4, auc:86.6 | loss:0.414
+[51,340] | tst acc:81.0, f1:67.8, auc:87.1 | trn acc:81.8, f1:68.4, auc:86.7 | loss:0.411
+[53,12] | tst acc:82.5, f1:70.2, auc:88.2 | trn acc:81.7, f1:68.7, auc:86.7 | loss:0.413
+[54,360] | tst acc:81.5, f1:67.5, auc:88.4 | trn acc:81.8, f1:68.4, auc:86.7 | loss:0.413
+[56,32] | tst acc:80.0, f1:65.8, auc:87.7 | trn acc:81.4, f1:68.1, auc:86.4 | loss:0.419
+[57,380] | tst acc:82.7, f1:71.0, auc:89.0 | trn acc:81.8, f1:68.8, auc:86.8 | loss:0.411
+[59,52] | tst acc:81.2, f1:70.5, auc:87.4 | trn acc:81.6, f1:68.2, auc:86.5 | loss:0.414
+[60,400] | tst acc:81.5, f1:69.3, auc:87.8 | trn acc:81.8, f1:68.5, auc:86.8 | loss:0.411
+[62,72] | tst acc:82.7, f1:70.5, auc:87.9 | trn acc:81.6, f1:68.1, auc:86.5 | loss:0.414
+[63,420] | tst acc:81.5, f1:70.3, auc:88.2 | trn acc:81.6, f1:68.7, auc:86.8 | loss:0.413
+[65,92] | tst acc:81.7, f1:68.3, auc:88.5 | trn acc:81.7, f1:68.4, auc:86.7 | loss:0.412
+[66,440] | tst acc:82.9, f1:72.2, auc:88.9 | trn acc:81.6, f1:68.2, auc:86.5 | loss:0.415
+[68,112] | tst acc:82.0, f1:69.9, auc:87.9 | trn acc:81.7, f1:68.7, auc:86.7 | loss:0.413
+[69,460] | tst acc:82.5, f1:71.8, auc:88.2 | trn acc:81.4, f1:68.2, auc:86.4 | loss:0.418
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:82.2, f1:69.9, auc:86.6 | trn acc:81.9, f1:68.7, auc:86.9 | loss:0.409
+Average epoch runtime: 3.99 seconds
+Total training time: 287.45 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=True, init_gene_emb=True, scheduler='none', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.6, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=False, alpha=0.6, gamma=2.0, adam=False, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING RELU
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.6
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+Training...
+USING NO LR SCHEDULING
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+[0,0] | tst acc:54.2, f1:55.2, auc:56.6 | trn acc:52.9, f1:45.3, auc:54.3 | loss:4.265
+[1,348] | tst acc:57.6, f1:44.0, auc:66.7 | trn acc:67.0, f1:47.4, auc:62.9 | loss:1.332
+[3,20] | tst acc:61.3, f1:50.9, auc:67.0 | trn acc:73.5, f1:55.9, auc:72.3 | loss:0.698
+[4,368] | tst acc:61.6, f1:51.8, auc:69.8 | trn acc:74.0, f1:57.6, auc:72.0 | loss:0.674
+[6,40] | tst acc:62.7, f1:51.8, auc:70.5 | trn acc:77.5, f1:61.7, auc:79.8 | loss:0.500
+[7,388] | tst acc:63.0, f1:52.4, auc:73.6 | trn acc:79.9, f1:65.0, auc:82.7 | loss:0.465
+[9,60] | tst acc:63.0, f1:50.6, auc:76.2 | trn acc:80.7, f1:66.4, auc:84.0 | loss:0.448
+[10,408] | tst acc:61.9, f1:49.8, auc:76.3 | trn acc:80.9, f1:66.8, auc:84.2 | loss:0.445
+[12,80] | tst acc:62.7, f1:50.4, auc:75.5 | trn acc:81.1, f1:66.9, auc:84.7 | loss:0.438
+[13,428] | tst acc:63.0, f1:50.9, auc:75.9 | trn acc:81.4, f1:67.6, auc:85.1 | loss:0.433
+[15,100] | tst acc:63.6, f1:52.4, auc:77.4 | trn acc:81.6, f1:67.8, auc:85.5 | loss:0.426
+[16,448] | tst acc:64.7, f1:54.2, auc:78.9 | trn acc:81.3, f1:67.3, auc:85.3 | loss:0.430
+[18,120] | tst acc:65.8, f1:56.3, auc:79.3 | trn acc:81.9, f1:68.6, auc:86.1 | loss:0.419
+[19,468] | tst acc:66.7, f1:57.6, auc:80.3 | trn acc:81.9, f1:68.4, auc:86.2 | loss:0.416
+[21,140] | tst acc:64.4, f1:54.0, auc:79.9 | trn acc:81.5, f1:68.0, auc:85.9 | loss:0.423
+[22,488] | tst acc:70.3, f1:63.2, auc:84.5 | trn acc:81.7, f1:68.4, auc:86.2 | loss:0.419
+[24,160] | tst acc:69.2, f1:62.0, auc:83.9 | trn acc:82.0, f1:68.9, auc:86.5 | loss:0.414
+[25,508] | tst acc:72.0, f1:66.4, auc:84.2 | trn acc:81.8, f1:68.2, auc:86.3 | loss:0.416
+[27,180] | tst acc:69.8, f1:62.7, auc:85.1 | trn acc:81.7, f1:68.4, auc:86.4 | loss:0.416
+[28,528] | tst acc:64.7, f1:53.5, auc:80.9 | trn acc:81.9, f1:68.5, auc:86.4 | loss:0.415
+[30,200] | tst acc:67.2, f1:59.2, auc:83.6 | trn acc:82.0, f1:69.0, auc:86.7 | loss:0.411
+[31,548] | tst acc:71.2, f1:65.3, auc:83.0 | trn acc:81.8, f1:68.5, auc:86.6 | loss:0.413
+[33,220] | tst acc:72.9, f1:68.0, auc:83.7 | trn acc:81.8, f1:68.2, auc:86.5 | loss:0.415
+[34,568] | tst acc:70.9, f1:64.4, auc:85.0 | trn acc:81.9, f1:68.2, auc:86.6 | loss:0.412
+[36,240] | tst acc:69.5, f1:62.5, auc:82.9 | trn acc:81.8, f1:68.6, auc:86.7 | loss:0.412
+[37,588] | tst acc:67.5, f1:58.8, auc:82.9 | trn acc:81.7, f1:68.4, auc:86.5 | loss:0.414
+[39,260] | tst acc:63.8, f1:52.6, auc:79.1 | trn acc:81.8, f1:68.4, auc:86.7 | loss:0.412
+[40,608] | tst acc:68.9, f1:61.5, auc:82.2 | trn acc:81.8, f1:68.6, auc:86.6 | loss:0.413
+[42,280] | tst acc:64.7, f1:55.2, auc:79.1 | trn acc:82.0, f1:68.9, auc:86.9 | loss:0.409
+[43,628] | tst acc:68.6, f1:60.5, auc:83.6 | trn acc:81.7, f1:68.4, auc:86.7 | loss:0.413
+[45,300] | tst acc:66.4, f1:57.3, auc:82.2 | trn acc:82.0, f1:68.7, auc:86.8 | loss:0.411
+[46,648] | tst acc:66.1, f1:55.9, auc:81.1 | trn acc:81.8, f1:68.6, auc:86.7 | loss:0.412
+[48,320] | tst acc:63.6, f1:53.4, auc:76.9 | trn acc:81.9, f1:68.6, auc:86.7 | loss:0.411
+[49,668] | tst acc:68.9, f1:62.8, auc:83.0 | trn acc:81.9, f1:68.2, auc:86.6 | loss:0.411
+[51,340] | tst acc:66.4, f1:57.0, auc:80.0 | trn acc:81.7, f1:68.6, auc:86.6 | loss:0.414
+[53,12] | tst acc:66.7, f1:58.2, auc:81.4 | trn acc:81.9, f1:68.3, auc:86.8 | loss:0.409
+[54,360] | tst acc:66.9, f1:57.1, auc:82.2 | trn acc:81.7, f1:68.4, auc:86.6 | loss:0.413
+[56,32] | tst acc:68.6, f1:60.8, auc:82.6 | trn acc:81.9, f1:68.8, auc:86.7 | loss:0.412
+[57,380] | tst acc:67.8, f1:60.1, auc:82.3 | trn acc:81.7, f1:68.7, auc:86.7 | loss:0.414
+[59,52] | tst acc:63.8, f1:53.6, auc:78.3 | trn acc:82.0, f1:68.5, auc:86.8 | loss:0.408
+[60,400] | tst acc:65.8, f1:55.7, auc:80.2 | trn acc:81.9, f1:68.5, auc:86.7 | loss:0.411
+[62,72] | tst acc:66.1, f1:56.2, auc:80.0 | trn acc:81.8, f1:68.4, auc:86.8 | loss:0.411
+[63,420] | tst acc:72.9, f1:68.0, auc:86.2 | trn acc:82.0, f1:68.2, auc:86.8 | loss:0.407
+[65,92] | tst acc:69.5, f1:62.5, auc:81.9 | trn acc:81.8, f1:69.1, auc:86.7 | loss:0.413
+[66,440] | tst acc:68.1, f1:61.2, auc:81.4 | trn acc:81.9, f1:68.9, auc:86.8 | loss:0.411
+[68,112] | tst acc:70.1, f1:63.4, auc:83.6 | trn acc:81.8, f1:68.6, auc:86.7 | loss:0.412
+[69,460] | tst acc:68.1, f1:60.4, auc:82.2 | trn acc:81.8, f1:68.3, auc:86.6 | loss:0.412
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:66.9, f1:57.8, auc:82.0 | trn acc:82.1, f1:69.1, auc:87.0 | loss:0.408
+Average epoch runtime: 3.99 seconds
+Total training time: 287.61 GPU seconds

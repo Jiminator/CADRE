@@ -11,7 +11,7 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --gpus-per-task=1
 #SBATCH --gpu-bind=closest
-#SBATCH -t 00:20:00
+#SBATCH -t 00:25:00
 #SBATCH -e slurm-%j.err
 #SBATCH -o slurm-%j.out
 
@@ -28,6 +28,12 @@ cd /scratch/bdkz/jshong/CADRE
 source ~/miniconda3/etc/profile.d/conda.sh 
 conda activate cadre
 
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --hidden_dim_enc=100
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --hidden_dim_enc=100
-time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --hidden_dim_enc=100
+SEEDS=(5497 58475 94707)
+echo "Using fixed seeds: ${SEEDS[@]}"
+
+export PYTHONHASHSEED=${SEEDS[0]}
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --init_gene_emb=False --seed=${SEEDS[0]}
+export PYTHONHASHSEED=${SEEDS[1]}
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --init_gene_emb=False --seed=${SEEDS[1]}
+export PYTHONHASHSEED=${SEEDS[2]}
+time python3 run_cf.py --repository gdsc --model_label cntx-attn-gdsc --init_gene_emb=False --seed=${SEEDS[2]}

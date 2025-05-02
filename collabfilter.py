@@ -1,4 +1,5 @@
 # collaborative filtering (variants) algorithm
+import math
 import numpy as np
 import random
 import os
@@ -45,7 +46,7 @@ class CF(Base):
         self.train_size = args.train_size
         self.test_size = args.test_size
         
-        self.seed = 2019
+        self.seed = args.seed
         self._rng = random.Random(self.seed)
 
         self.rng_train = [idx for idx in range(self.train_size)]
@@ -78,7 +79,7 @@ class CF(Base):
         
         self.input_dir = args.input_dir
         
-        self.use_oc = args.use_oc
+        self.scheduler = args.scheduler
         
         self.alpha = args.alpha
         
@@ -87,6 +88,18 @@ class CF(Base):
         self.focal = args.focal
         
         self.adam = args.adam
+                
+        self.max_iter = args.max_iter
+        
+        self.lr_scheduler = None
+        
+        self.batch_size = args.batch_size
+
+    def _set_lr(self, lr, mom=None):
+        for pg in self.optimizer.param_groups:
+            pg['lr'] = lr
+            if mom is not None and 'momentum' in pg:
+                pg['momentum'] = mom
 
 
     def build(self, ptw_ids):
@@ -109,18 +122,31 @@ class CF(Base):
         )
 
         if self.adam:
+            print("INITIALIZING ADAM OPTIMIZER")
             self.optimizer = optim.AdamW(
                 self.parameters(),
-                lr=0.0001,
+                lr=self.learning_rate,
                 weight_decay=self.weight_decay
             )
         else:
+            print("INITIALIZING SGD OPTIMIZER")
             self.optimizer = optim.SGD(
                 self.parameters(),
                 lr=self.learning_rate,
                 momentum=0.95,
                 weight_decay=self.weight_decay
             )
+        
+        if self.scheduler == 'cosine':
+            print("INITIALIZING COSINE SCHEDULER")
+            total_updates = math.ceil(self.max_iter / self.batch_size) 
+            self.lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer,
+                T_max=total_updates,  # total number of iterations
+                eta_min=1e-6          # min LR at the end
+            )
+        if self.scheduler == 'onecycle' and self.lr_scheduler is not None:
+            raise ValueError("Cannot use both OneCycle and CosineAnnealingLR scheduler.")
 
         # multi-label loss with mask
         # https://pytorch.org/docs/master/nn.html#bcewithlogitsloss
@@ -183,12 +209,17 @@ class CF(Base):
         test_inc_size: int
         interval of running a test/evaluation
         """
-        if self.use_oc:
+        if self.scheduler == 'onecycle':
             print("INITIALIZING ONE CYCLE")
             if self.adam:
                 ocp = OneCycle(max_iter // batch_size, max_lr=self.learning_rate, div=25)
             else:
                 ocp = OneCycle(max_iter//batch_size, self.learning_rate)
+        elif self.scheduler != 'cosine':
+             print("USING NO LR SCHEDULING")
+        
+        print(f"Training with optimizer: {'AdamW' if self.adam else 'SGD'}")
+        print(f"Scheduler: {self.scheduler if self.scheduler else 'None'}")
 
         tgts_train, prds_train, msks_train = [], [], []
         losses, losses_ent = [], []
@@ -206,7 +237,7 @@ class CF(Base):
                 elapsed = epoch_end_time - epoch_start_time
                 epoch_times.append(elapsed)
 
-                print(f"Epoch {record_epoch} finished in {elapsed:.2f} seconds")
+                # print(f"Epoch {record_epoch} finished in {elapsed:.2f} seconds")
 
                 record_epoch = iter_train // len(self.rng_train)
                 self._rng.shuffle(self.rng_train)
@@ -222,19 +253,16 @@ class CF(Base):
             msks = batch_set["msk"]
 
 
-            if self.use_oc:
-                lr, mom = ocp.calc() # calculate learning rate using CLR
-
-                if lr == -1: # the stopping criteria
+            if self.scheduler == 'onecycle':
+                assert 'ocp' in locals(), "OneCycle scheduler was not initialized"
+                lr, mom = ocp.calc()
+                if lr == -1:
                     print("LR IS -1")
                     break
                 if self.adam:
-                    for pg in self.optimizer.param_groups:
-                        pg['lr'] = lr  # only update LR
+                    self._set_lr(lr)
                 else:
-                    for pg in self.optimizer.param_groups: # update learning rate
-                        pg['lr'] = lr
-                        pg['momentum'] = mom
+                    self._set_lr(lr, mom)
 
             self.optimizer.zero_grad()
 
@@ -244,6 +272,9 @@ class CF(Base):
             loss.backward()
 
             self.optimizer.step()
+            
+            if self.lr_scheduler is not None:
+                self.lr_scheduler.step()
 
             if self.use_cuda:
                 tgts_train.append(tgts.data.cpu().numpy())
@@ -271,9 +302,9 @@ class CF(Base):
 
                 precision, recall, f1score, accuracy, auc = evaluate(tgts, msks, prds, epsilon=self.epsilon)
 
-                print("[%d,%d] | tst acc:%.1f, f1:%.1f, auc:%.1f | trn acc:%.1f, f1:%.1f, auc:%.1f | loss:%.3f"%( iter_train//len(self.rng_train),
-                    iter_train%len(self.rng_train), 100.0*accuracy, 100.0*f1score, 100.0*auc, 100.0*accuracy_train, 100.0*f1score_train, 100.0*auc_train,
-                    np.mean(losses)))
+                # print("[%d,%d] | tst acc:%.1f, f1:%.1f, auc:%.1f | trn acc:%.1f, f1:%.1f, auc:%.1f | loss:%.3f"%( iter_train//len(self.rng_train),
+                #     iter_train%len(self.rng_train), 100.0*accuracy, 100.0*f1score, 100.0*auc, 100.0*accuracy_train, 100.0*f1score_train, 100.0*auc_train,
+                #     np.mean(losses)))
 
                 logs["iter"].append(iter_train)
                 logs["precision"].append(precision)
@@ -413,27 +444,27 @@ class CF(Base):
                 batch_type="test", use_cuda=self.use_cuda
             )
 
-        hid_drg = self.forward(batch_set)
+            hid_drg = self.forward(batch_set)
 
-        batch_prds = torch.sigmoid(hid_drg)
-        batch_tgts = batch_set["tgt"]
-        batch_msks = batch_set["msk"]
+            batch_prds = torch.sigmoid(hid_drg)
+            batch_tgts = batch_set["tgt"]
+            batch_msks = batch_set["msk"]
 
-        if self.use_attention:
+            if self.use_attention:
+                if self.use_cuda:
+                    amtr.append(self.encoder.Amtr.data.cpu().numpy()) #(batch_size, num_drg, num_omc)
+                else:
+                    amtr.append(self.encoder.Amtr.data.numpy()) #(batch_size, num_drg, num_omc)
+
             if self.use_cuda:
-                amtr.append(self.encoder.Amtr.data.cpu().numpy()) #(batch_size, num_drg, num_omc)
+                tgts.append(batch_tgts.data.cpu().numpy())
+                msks.append(batch_msks.data.cpu().numpy())
+                prds.append(batch_prds.data.cpu().numpy())
             else:
-                amtr.append(self.encoder.Amtr.data.numpy()) #(batch_size, num_drg, num_omc)
-
-        if self.use_cuda:
-            tgts.append(batch_tgts.data.cpu().numpy())
-            msks.append(batch_msks.data.cpu().numpy())
-            prds.append(batch_prds.data.cpu().numpy())
-        else:
-            tgts.append(batch_tgts.data.numpy())
-            msks.append(batch_msks.data.numpy())
-            prds.append(batch_prds.data.numpy())
-        tmr = tmr + batch_set["tmr"]
+                tgts.append(batch_tgts.data.numpy())
+                msks.append(batch_msks.data.numpy())
+                prds.append(batch_prds.data.numpy())
+            tmr = tmr + batch_set["tmr"]
 
         tgts = np.concatenate(tgts,axis=0)
         msks = np.concatenate(msks,axis=0)
