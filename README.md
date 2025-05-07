@@ -19,12 +19,11 @@ git clone https://github.com/Jiminator/CADRE.git
 cd CADRE/
 ```
 
-2. Setup Conda evironement
+2. Setup Conda evironement. Note: PyTorch was not included in requirements.txt. It was removed to give the user a chance to install it using the proper method given their hardware and OS. See instructions from Pytorch [here](https://pytorch.org/get-started/locally/).
 ```
 conda create --name cadre python=3.11 -y
 conda activate cadre
 pip3 install -r requirements.txt
-# Install Pytorch based on your CUDA Version/Device: https://pytorch.org/get-started/locally/
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 # For CUDA 11.8 
 ```
 ## Usage
@@ -72,6 +71,9 @@ python run_cf.py --repository gdsc --model_label cntx-attn-gdsc --seed=${SEEDS[0
 ```
 
 The output will be saved to `data/output/cf/`.
+
+## Jupyter Notebook
+We also provide a notebook [here](CADRE.ipynb). Be sure to install jupyter via `conda install jupyter` in the `cadre` conda environment.
 
 ## Data
 
