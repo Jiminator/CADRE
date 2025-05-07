@@ -125,15 +125,6 @@ def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 if __name__ == "__main__":
-    model = CF(args)
-    print("HIDDEN EMBEDDING SIZE:", args.hidden_dim_enc)
-    model.build(ptw_ids)
-
-    if args.use_cuda:
-        model = model.cuda()
-
-    total_params = count_parameters(model)
-    print(f"Total trainable parameters: {total_params:,}")
     
     logs = {'args':args, 'iter':[],
             'precision':[], 'recall':[],
@@ -162,6 +153,16 @@ if __name__ == "__main__":
         print(f"AUC-PR: {auc_pr:.4f}")
         exit()
 
+    model = CF(args)
+    print("HIDDEN EMBEDDING SIZE:", args.hidden_dim_enc)
+    model.build(ptw_ids)
+
+    if args.use_cuda:
+        model = model.cuda()
+
+    total_params = count_parameters(model)
+    print(f"Total trainable parameters: {total_params:,}")
+    
     if args.is_train:
         print("Training...")
         logs = model.train(train_set, test_set,

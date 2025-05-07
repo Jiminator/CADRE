@@ -341,6 +341,8 @@ class ExpEncoder(nn.Module):
         self.use_hid_lyr = use_hid_lyr
         self.norm_strategy = norm_strategy
         self.use_residual = use_residual
+        if self.use_residual:
+            print("USING RESIDUAL CONNECTION")
         self.use_relu = use_relu
         if self.use_relu:
             print("USING RELU")
