@@ -10,7 +10,7 @@ import torch.optim as optim
 from torch.autograd import Variable
 
 from utils import get_minibatch, evaluate
-from bases import Base, DrugDecoder, ExpEncoder, CLR, OneCycle, FocalLoss
+from bases import Base, DrugDecoder, ExpEncoder, CLR, OneCycle, FocalLoss, DrugMLPDecoder
 
 __author__ = "Jimmy Shong"
 
@@ -94,6 +94,12 @@ class CF(Base):
         self.lr_scheduler = None
         
         self.batch_size = args.batch_size
+        
+        self.mlp = args.mlp
+        
+        self.norm_strategy = args.norm_strategy
+        
+        self.use_residual = args.use_residual
 
     def _set_lr(self, lr, mom=None):
         for pg in self.optimizer.param_groups:
@@ -114,12 +120,20 @@ class CF(Base):
             embedding_dim=self.embedding_dim, use_attention=self.use_attention,
             attention_size=self.attention_size, attention_head=self.attention_head,
             init_gene_emb=self.init_gene_emb, use_cntx_attn=self.use_cntx_attn, ptw_ids=self.ptw_ids,
-            use_hid_lyr=self.use_hid_lyr, use_relu=self.use_relu, repository=self.repository, input_dir=self.input_dir
+            use_hid_lyr=self.use_hid_lyr, use_relu=self.use_relu, repository=self.repository, input_dir=self.input_dir, norm_strategy=self.norm_strategy, use_residual=self.use_residual
         )
-
-        self.decoder = DrugDecoder(
-            self.embedding_dim, self.drg_size
-        )
+        if self.norm_strategy == "prenorm":
+            self.final_norm = nn.LayerNorm(self.embedding_dim)
+            
+        if self.mlp:
+            print("USING MLP IN DECODER")
+            self.decoder = DrugMLPDecoder(
+                self.embedding_dim, self.drg_size
+            )
+        else:
+            self.decoder = DrugDecoder(
+                self.embedding_dim, self.drg_size
+            )
 
         if self.adam:
             print("INITIALIZING ADAM OPTIMIZER")
@@ -177,6 +191,9 @@ class CF(Base):
         omc_idx = batch_set[self.omic+"_idx"]
 
         hid_omc = self.encoder(omc_idx, ptw_ids)
+        
+        if self.norm_strategy == "prenorm":
+            hid_omc = self.final_norm(hid_omc)
 
         logit_drg = self.decoder(hid_omc, drg_ids)
 
@@ -302,9 +319,9 @@ class CF(Base):
 
                 precision, recall, f1score, accuracy, auc = evaluate(tgts, msks, prds, epsilon=self.epsilon)
 
-                # print("[%d,%d] | tst acc:%.1f, f1:%.1f, auc:%.1f | trn acc:%.1f, f1:%.1f, auc:%.1f | loss:%.3f"%( iter_train//len(self.rng_train),
-                #     iter_train%len(self.rng_train), 100.0*accuracy, 100.0*f1score, 100.0*auc, 100.0*accuracy_train, 100.0*f1score_train, 100.0*auc_train,
-                #     np.mean(losses)))
+                print("[%d,%d] | tst acc:%.1f, f1:%.1f, auc:%.1f | trn acc:%.1f, f1:%.1f, auc:%.1f | loss:%.3f"%( iter_train//len(self.rng_train),
+                    iter_train%len(self.rng_train), 100.0*accuracy, 100.0*f1score, 100.0*auc, 100.0*accuracy_train, 100.0*f1score_train, 100.0*auc_train,
+                    np.mean(losses)))
 
                 logs["iter"].append(iter_train)
                 logs["precision"].append(precision)

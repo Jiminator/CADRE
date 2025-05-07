@@ -2,7 +2,7 @@ import re
 import numpy as np
 
 # Path to your txt file
-filename = 'alpha_auto3.out'
+filename = 'slurm-9624952.out'
 
 # Open and read the file
 with open(filename, 'r') as f:

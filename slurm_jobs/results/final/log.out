@@ -1,0 +1,86 @@
+job is starting on gpua043.delta.ncsa.illinois.edu
+Using fixed seeds: 5497 58475 94707
+SEED: 5497
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=5497, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=False, init_gene_emb=True, scheduler='cosine', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.0, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.7, gamma=2.0, adam=False, mlp=False, norm_strategy='None', use_residual=True, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.0
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+INITIALIZING COSINE SCHEDULER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.7000)
+Total trainable parameters: 122,420
+Training...
+Training with optimizer: SGD
+Scheduler: cosine
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:75.6, f1:64.8, auc:83.6 | trn acc:79.4, f1:71.2, auc:87.3 | loss:0.050
+Average epoch runtime: 4.62 seconds
+Total training time: 332.46 GPU seconds
+SEED: 58475
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=58475, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=False, init_gene_emb=True, scheduler='cosine', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.0, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.7, gamma=2.0, adam=False, mlp=False, norm_strategy='None', use_residual=True, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.0
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+INITIALIZING COSINE SCHEDULER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.7000)
+Total trainable parameters: 122,420
+Training...
+Training with optimizer: SGD
+Scheduler: cosine
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:76.3, f1:66.5, auc:83.6 | trn acc:79.8, f1:70.7, auc:87.5 | loss:0.049
+Average epoch runtime: 4.60 seconds
+Total training time: 331.50 GPU seconds
+SEED: 94707
+Loading drug dataset...
+Hyperparameters:
+Namespace(seed=94707, is_train=True, input_dir='data/input', output_dir='data/output', repository='gdsc', drug_id=-1, use_cuda=True, use_relu=False, init_gene_emb=True, scheduler='cosine', shuffle=False, omic='exp', use_attention=True, use_cntx_attn=True, embedding_dim=200, attention_size=128, attention_head=8, hidden_dim_enc=200, use_hid_lyr=True, max_iter=48000, max_fscore=-1, dropout_rate=0.0, learning_rate=0.3, weight_decay=0.0003, batch_size=8, test_batch_size=8, test_inc_size=1024, model_label='cntx-attn-gdsc', focal=True, alpha=0.7, gamma=2.0, adam=False, mlp=False, norm_strategy='None', use_residual=True, exp_size=3000, mut_size=1000, cnv_size=1000, omc_size=3000, drg_size=260, train_size=676, test_size=170)
+HIDDEN EMBEDDING SIZE: 200
+USING PRETRAING EMBEDDINGS
+DROPOUT RATE: 0.0
+USING HIDDEN LAYER
+USING SELF ATTENTION
+USING CONTEXTUAL ATTENTION
+INITIALIZING SGD OPTIMIZER
+INITIALIZING COSINE SCHEDULER
+USING FOCAL LOSS
+GAMMA: 2.0
+ALPHA: tensor(0.7000)
+Total trainable parameters: 122,420
+Training...
+Training with optimizer: SGD
+Scheduler: cosine
+Batch size: 8
+Train dataset size (samples): 676
+Batches per epoch: 85
+Reached final batch of training at iter = 47992
+Reached final batch of training at iter = 48000
+Epoch 71 finished in 0.05 seconds
+[71,4] | tst acc:76.7, f1:67.4, auc:83.8 | trn acc:80.1, f1:70.8, auc:87.6 | loss:0.049
+Average epoch runtime: 4.60 seconds
+Total training time: 331.08 GPU seconds

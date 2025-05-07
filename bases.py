@@ -75,19 +75,7 @@ class FocalLoss(nn.Module):
         else:
             return loss
 
-class FocalBCEWithLogitsLoss(nn.Module):
-    def __init__(self, alpha=0.25, gamma=2):
-        super(FocalBCEWithLogitsLoss, self).__init__()
-        self.alpha = alpha
-        self.gamma = gamma
 
-    def forward(self, logits, targets):
-        bce_loss = F.binary_cross_entropy_with_logits(logits, targets, reduction='none')
-        probs = torch.sigmoid(logits)
-        pt = targets * probs + (1 - targets) * (1 - probs)
-        loss = self.alpha * (1 - pt) ** self.gamma * bce_loss
-        return loss.mean()
-          
 # https://discuss.pytorch.org/t/how-to-tile-a-tensor/13853/4
 def tile(a, dim, n_tile):
     init_dim = a.size(dim)
@@ -271,6 +259,58 @@ class DrugDecoder(nn.Module):
 
         return logit_drg
 
+class DrugMLPDecoder(nn.Module):
+    """ Encoder module to decode the drug response from the concatenation of genome hidden layer state.
+
+    """
+
+    def __init__(self, hidden_dim, drg_size):
+        """
+        Parameters
+        ----------
+        hidden_dim: input hidden layer dimension of single omic type.
+        drg_size: number of output drugs to be predicted.
+        dropout_rate: dropout rate of the intermediate layer.
+
+        """
+
+        super(DrugMLPDecoder, self).__init__()
+
+        self.layer_emb_drg = nn.Embedding(
+            num_embeddings=drg_size,
+            embedding_dim=hidden_dim)
+
+        self.drg_bias = nn.Parameter(torch.zeros(drg_size)) #(num_drg)
+        
+        self.mlp = nn.Sequential(
+            nn.Linear(hidden_dim, hidden_dim // 2),
+            nn.ReLU(),
+            nn.Linear(hidden_dim // 2, hidden_dim)  # Output one score per drug
+        )
+
+
+    def forward(self, hid_omc, drg_ids):
+        """
+        """
+        # inject nonlinearity
+        hid_omc = self.mlp(hid_omc)
+
+        E_t = self.layer_emb_drg(drg_ids) # (1, num_drg, hidden_dim_enc)
+
+        E_t = E_t.repeat(hid_omc.shape[0],1,1) # (batch_size, num_drg, hidden_dim_enc)
+
+        logit_drg = torch.matmul(
+            hid_omc.view(hid_omc.shape[0], hid_omc.shape[1], 1, hid_omc.shape[2]),
+            E_t.view(E_t.shape[0], E_t.shape[1], E_t.shape[2], 1))
+
+        logit_drg = torch.sum(logit_drg, dim=2, keepdim=False) # (batch_size, num_drg)
+        logit_drg = torch.sum(logit_drg, dim=2, keepdim=False)
+
+        drg_bias = torch.unsqueeze(self.drg_bias,0) # (1, num_drg)
+        drg_bias = drg_bias.repeat(hid_omc.shape[0],1) #(batch_size, num_drg)
+
+        return logit_drg
+
 
 class ExpEncoder(nn.Module):
     """ Encoder module with/without self-attention function to encode omic information.
@@ -281,7 +321,7 @@ class ExpEncoder(nn.Module):
         self, omc_size, hidden_dim, dropout_rate=0.5, embedding_dim=512,
         use_attention=True, attention_size=400, attention_head=8, init_gene_emb=True,
         use_cntx_attn=True, ptw_ids=None, use_hid_lyr=False, use_relu=False,
-        repository='gdsc', input_dir="data/input"):
+        repository='gdsc', input_dir="data/input", norm_strategy="None", use_residual=False):
 
         """
         Parameters
@@ -299,6 +339,8 @@ class ExpEncoder(nn.Module):
         super(ExpEncoder, self).__init__()
 
         self.use_hid_lyr = use_hid_lyr
+        self.norm_strategy = norm_strategy
+        self.use_residual = use_residual
         self.use_relu = use_relu
         if self.use_relu:
             print("USING RELU")
@@ -352,6 +394,9 @@ class ExpEncoder(nn.Module):
                 self.layer_emb_ptw = nn.Embedding(
                     num_embeddings=max(ptw_ids)+1,
                     embedding_dim=attention_size)
+            if self.norm_strategy in ("prenorm","postnorm"):
+                self.attn_norm = nn.LayerNorm(embedding_dim)
+                # self.final_norm = nn.LayerNorm(embedding_dim)
 
 
     def forward(self, omc_idx, ptw_ids):
@@ -370,19 +415,26 @@ class ExpEncoder(nn.Module):
 
 
         if self.use_attention:
-
+            
             E_t = torch.unsqueeze(E_t,1) #(batch_size, 1, num_omc, embedding_dim)
             E_t = E_t.repeat(1,ptw_ids.shape[1],1,1) #(batch_size, num_drg, num_omc, embedding_dim)
+
+            if self.norm_strategy == "prenorm":
+                E_t_norm = self.attn_norm(E_t)
+                residual = torch.mean(E_t, dim=2) if self.use_residual else None
+            else:
+                E_t_norm = E_t
+                residual = torch.mean(E_t, dim=2) if self.use_residual else None
 
             if self.use_cntx_attn:
                 Ep_t = self.layer_emb_ptw(ptw_ids) #(1, num_drg, attention_size)
                 Ep_t = torch.unsqueeze(Ep_t,2) #(1, num_drg, 1, attention_size)
                 Ep_t = Ep_t.repeat(omc_idx.shape[0],1,omc_idx.shape[1],1) #(batch_size, num_drg, num_omc, attention_size)
 
-                E_t_1 = torch.tanh( self.layer_w_0(E_t) + Ep_t) #(batch_size, num_drg, num_omc, attention_size)
+                E_t_1 = torch.tanh( self.layer_w_0(E_t_norm) + Ep_t) #(batch_size, num_drg, num_omc, attention_size)
 
             else:
-                E_t_1 = torch.tanh( self.layer_w_0(E_t) ) #(batch_size, num_omc, attention_size)
+                E_t_1 = torch.tanh( self.layer_w_0(E_t_norm) ) #(batch_size, num_omc, attention_size)
 
             A_omc = self.layer_beta(E_t_1) #(batch_size, num_drg, num_omc, attention_head)
 
@@ -395,6 +447,12 @@ class ExpEncoder(nn.Module):
             self.Amtr = torch.squeeze(A_omc, 3) #(batch_size, num_drg, num_omc)
 
             emb_omc = torch.sum( torch.matmul(A_omc.permute(0,1,3,2), E_t), dim=2, keepdim=False) #(batch_size, num_drg, embedding_dim)
+            
+            if self.use_residual:
+                emb_omc += residual
+
+            if self.norm_strategy == "postnorm":
+                emb_omc = self.attn_norm(emb_omc)
 
         else:
 
@@ -409,7 +467,8 @@ class ExpEncoder(nn.Module):
             hid_omc = self.layer_dropout_0(torch.relu(emb_omc))
         else:
             hid_omc = self.layer_dropout_0(emb_omc)
-
         return hid_omc
+
+
 
 

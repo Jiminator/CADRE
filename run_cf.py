@@ -57,6 +57,14 @@ parser.add_argument("--alpha", help="alpha for focal loss", type=float, default=
 parser.add_argument("--gamma", help="gamma for focal loss", type=float, default=2.0)
 
 parser.add_argument("--adam", help="whether to use AdamW or not", type=bool_ext, default=False)
+
+parser.add_argument("--mlp", help="whether to use MLP in decoder or not", type=bool_ext, default=False)
+
+parser.add_argument("--norm_strategy", help="whether to use postnorm, prenorm, or none", type=str, default="None")
+parser.add_argument("--use_residual", help="whether to use residuals", type=bool_ext, default=False)
+
+parser.add_argument("--store_model", help="whether to store model pkl file", type=bool_ext, default=False)
+
 args = parser.parse_args()
 
 import random
@@ -72,6 +80,9 @@ torch.manual_seed(SEED)
 if torch.cuda.is_available():
     torch.cuda.manual_seed(SEED)
     torch.cuda.manual_seed_all(SEED)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
 
 from utils import fill_mask, load_dataset, split_dataset
 
@@ -119,8 +130,8 @@ if __name__ == "__main__":
     if args.use_cuda:
         model = model.cuda()
 
-    # total_params = count_parameters(model)
-    # print(f"Total trainable parameters: {total_params:,}")
+    total_params = count_parameters(model)
+    print(f"Total trainable parameters: {total_params:,}")
     
     logs = {'args':args, 'iter':[],
             'precision':[], 'recall':[],
@@ -166,10 +177,11 @@ if __name__ == "__main__":
             logs=logs
         )
 
-    # for trial in range(0, 100):
-    #     if os.path.exists("data/output/cf/logs"+str(trial)+".pkl"):
-    #         continue
-    #     print(trial)
-    #     with open("data/output/cf/logs"+str(trial)+".pkl", "wb") as f:
-    #         pickle.dump(logs, f, protocol=2)
-    #     break
+    if args.store_model:
+        for trial in range(0, 100):
+            if os.path.exists("data/output/cf/logs"+str(trial)+".pkl"):
+                continue
+            print(trial)
+            with open("data/output/cf/logs"+str(trial)+".pkl", "wb") as f:
+                pickle.dump(logs, f, protocol=2)
+            break

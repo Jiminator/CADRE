@@ -1,0 +1,20 @@
+Running "module reset". Resetting modules to system default. The following $MODULEPATH directories have been removed: None
+
+Currently Loaded Modules:
+  1) gcc/11.4.0      3) cuda/11.8.0         5) slurm-env/0.1
+  2) openmpi/4.1.6   4) cue-login-env/1.1   6) default-s11
+
+ 
+
+
+real	5m38.991s
+user	5m34.832s
+sys	0m4.260s
+
+real	5m38.687s
+user	5m34.570s
+sys	0m3.764s
+
+real	5m39.564s
+user	5m35.298s
+sys	0m4.260s
