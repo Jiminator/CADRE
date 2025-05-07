@@ -7,13 +7,17 @@ from utils import bool_ext
 
 __author__ = "Jimmy Shong"
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", help="manual seed", type=int, default=2019)
 
 parser.add_argument("--is_train", help="whether to train or not (tune)", type=bool_ext, default=True)
+parser.add_argument("--eval", help="whether to only evaluate from a saved pkl file", type=bool_ext, default=False)
+parser.add_argument("--pkl_path", help="path to the .pkl file for evaluation", type=str, default=None)
+parser.add_argument("--store_model", help="whether to store model pkl file", type=bool_ext, default=False)
 
 parser.add_argument("--input_dir", help="directory of input files", type=str, default="data/input")
-parser.add_argument("--output_dir", help="directory of output files", type=str, default="data/output")
+parser.add_argument("--output_dir", help="directory of output files", type=str, default="data/output/cf/")
 parser.add_argument("--repository", help="data to be analyzed, can be gdsc or ccle", type=str, default="gdsc")#gdsc
 parser.add_argument("--drug_id", help="the index of drug to be predicted in STL, -1 if MTL", type=int, default=-1)#0-259
 parser.add_argument("--use_cuda", help="whether to use GPU or not", type=bool_ext, default=True)
@@ -62,8 +66,6 @@ parser.add_argument("--mlp", help="whether to use MLP in decoder or not", type=b
 
 parser.add_argument("--norm_strategy", help="whether to use postnorm, prenorm, or none", type=str, default="None")
 parser.add_argument("--use_residual", help="whether to use residuals", type=bool_ext, default=False)
-
-parser.add_argument("--store_model", help="whether to store model pkl file", type=bool_ext, default=False)
 
 args = parser.parse_args()
 
@@ -140,6 +142,26 @@ if __name__ == "__main__":
             'f1score_train':[], 'accuracy_train':[], 'auc_train':[],
             'loss':[], 'ptw_ids':ptw_ids}
 
+    if args.eval:
+        print(f"Evaluating from saved logs at: {args.pkl_path}")
+        with open(args.output_dir + args.pkl_path, "rb") as f:
+            logs = pickle.load(f)
+        from utils import evaluate_all
+
+        preds = logs["preds"]
+        labels = logs["labels"]
+        msks = logs["msks"]
+        precision, recall, f1, acc, auc_roc, auc_pr = evaluate_all(labels, msks, preds)
+
+        print(f"\nEvaluation Metrics from {args.pkl_path}:")
+        print(f"Accuracy: {acc:.4f}")
+        print(f"F1 Score: {f1:.4f}")
+        print(f"Precision: {precision:.4f}")
+        print(f"Recall: {recall:.4f}")
+        print(f"AUC-ROC: {auc_roc:.4f}")
+        print(f"AUC-PR: {auc_pr:.4f}")
+        exit()
+
     if args.is_train:
         print("Training...")
         logs = model.train(train_set, test_set,
@@ -178,10 +200,19 @@ if __name__ == "__main__":
         )
 
     if args.store_model:
-        for trial in range(0, 100):
-            if os.path.exists("data/output/cf/logs"+str(trial)+".pkl"):
-                continue
-            print(trial)
-            with open("data/output/cf/logs"+str(trial)+".pkl", "wb") as f:
+        if not args.pkl_path:
+            for trial in range(100):
+                trial_path = os.path.join(args.output_dir, f"logs{trial}.pkl")
+                if not os.path.exists(trial_path):
+                    print(f"Auto-saving model to {trial_path}")
+                    with open(trial_path, "wb") as f:
+                        pickle.dump(logs, f, protocol=2)
+                    break
+        else:
+            save_path = os.path.join(args.output_dir, args.pkl_path)
+            if os.path.exists(save_path):
+                print(f"Warning: Overwriting existing file {save_path}")
+            else:
+                print(f"Saving model to {save_path}")
+            with open(save_path, "wb") as f:
                 pickle.dump(logs, f, protocol=2)
-            break
